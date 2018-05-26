@@ -1,0 +1,1841 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Abstract
+{
+	public class Character
+	{
+		public void DealMagicalDamage(int damage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DealPhysicalDamage(int damage)
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+	package Characters;
+
+	import Buffs.*;
+	import Effects.*;
+	import Mainpack.Constants;
+	import Mainpack.MainWindow_Window;
+	import MultiMediaSystem.SoundSystem;
+	import NetWorkSystem.CombatLogWriter;
+	import NetWorkSystem.Damage;
+	import PeriodicEvents.*;
+	import java.awt.Image;
+	import java.util.ArrayList;
+
+	/**
+	 * Абстрактный класс персонажей. Содержит все методы общие для всех персонажей.
+	 *
+	 * @author Deejay
+	 */
+	public abstract class Char_Abstract
+	{
+
+		/**
+		 * имя персонажа
+		 */
+		String name;
+		/**
+		 * максимальные ХП
+		 */
+		int hpMax = 1;
+		/**
+		 * текущие ХП
+		 */
+		int hp;
+		/**
+		 * броня
+		 */
+		int armor;
+		/**
+		 * коэффициент снижения урона от брони
+		 */
+		double damageReduction;
+		/**
+		 * вероятность критического удара
+		 */
+		double critChance;
+		/**
+		 * текущая поза
+		 */
+		int pose = Pose.MAIN;
+		/**
+		 * текущая координата по х
+		 */
+		int x;
+		/**
+		 * текущая координата по у
+		 */
+		int y;
+		/**
+		 * ссылка на врага
+		 */
+		Char_Abstract enemy;
+		/**
+		 * панель урона 1
+		 */
+		public ArrayList<DamagesAnimation> damagesAnimations = new ArrayList<>();
+		/**
+		 * первый ли игрок
+		 */
+		boolean first;
+		/**
+		 * может ли использовать способности
+		 */
+		boolean abled = true;
+		/**
+		 * ссылка на главное окно
+		 */
+		public MainWindow_Window mainwindow;
+		/**
+		 * комбо-лист
+		 */
+		ArrayList<String> comboList = new ArrayList<>();
+		/**
+		 * текущая комбинация
+		 */
+		String combo = "";
+		/**
+		 * ожидание следующих ударов комбо
+		 */
+		ComboWaiter comboWaiter;
+		/**
+		 * последняя успешная атака
+		 */
+		char lastAttack = 'a';
+		/**
+		 * анимация прыжка
+		 */
+		JumpAnimation jumpAnimation;
+		/**
+		 * задержка после атак\комбинаций
+		 */
+		public DelayAfterCombo delayAfterCombo;
+		/**
+		 * анимация рывка
+		 */
+		ChargeAnimation chargeAnimation;
+		//графические константы
+		private Image icon;
+		private boolean mainstancePosition = false;
+		private int jumpPosition = 1;
+		private int movePosition = 1;
+		private int stormPosition = 1;
+		private Image winStance;
+		private StanceAnimation stanceAnimation;
+		private Image mainStance1;
+		private Image mainStance2;
+		private Image mainStance1Inv;
+		private Image mainStance2Inv;
+		private Image move1Stance;
+		private Image move2Stance;
+		private Image move3Stance;
+		private Image move4Stance;
+		private Image move1StanceInv;
+		private Image move2StanceInv;
+		private Image move3StanceInv;
+		private Image move4StanceInv;
+		private Image jump1Stance;
+		private Image jump2Stance;
+		private Image jump3Stance;
+		private Image jump4Stance;
+		private Image jump1StanceInv;
+		private Image jump2StanceInv;
+		private Image jump3StanceInv;
+		private Image jump4StanceInv;
+		private Image lowhandStance;
+		private Image lowhandStanceInv;
+		private Image highhandStance;
+		private Image highhandStanceInv;
+		private Image lowkickStance;
+		private Image lowkickStanceInv;
+		private Image highkickStance;
+		private Image highkickStanceInv;
+		private Image blockPicStance;
+		private Image blockStanceInv;
+		private Image chargePicStance;
+		private Image chargeStanceInv;
+		private Image uppercutPicStance;
+		private Image uppercutStanceInv;
+		private Image powerfulkickPicStance;
+		private Image powerfulkickStanceInv;
+		private Image downPicStance;
+		private Image downStanceInv;
+		private Image gainPicStance;
+		private Image gainStanceInv;
+		private Image deathPicStance;
+		private Image deathStanceInv;
+		private Image stunPicStance;
+		private Image stunStanceInv;
+		private Image castupPicStance;
+		private Image castupStanceInv;
+		private Image castforwardPicStance;
+		private Image castforwardStanceInv;
+		private Image storm1Stance;
+		private Image storm2Stance;
+		private Image storm3Stance;
+		//кд способностей
+		/**
+		 * кд на прыжок
+		 */
+		private Cooldown jumpCD = new Cooldown(0);
+		/**
+		 * кд на рывок
+		 */
+		Cooldown chargeCD = new Cooldown(0);
+		/**
+		 * кд на 1-ую способность
+		 */
+		Cooldown cd1 = new Cooldown(0);
+		/**
+		 * кд на 2-ую способность
+		 */
+		Cooldown cd2 = new Cooldown(0);
+		/**
+		 * кд на 3-ую способность
+		 */
+		Cooldown cd3 = new Cooldown(0);
+		/**
+		 * массив бафов
+		 */
+		public BuffAbstract[] buffs = new BuffAbstract[18];
+		/**
+		 * массив эффектов
+		 */
+		public EffectAbstract[] effects = new EffectAbstract[21];
+
+		/**
+		 * конструктор для 4 фазы
+		 *
+		 * @param first первый ли игрок?
+		 * @param hpMax максимальные хп
+		 * @param armor броня
+		 * @param critChance крит
+		 * @param name имя
+		 * @param enemy ссылка на врага
+		 */
+		public Char_Abstract(boolean first, int hpMax, int armor, double critChance, String name, Char_Abstract enemy, MainWindow_Window mainwindow)
+		{
+			this.first = first;
+			this.hpMax = hpMax;
+			this.armor = armor;
+			this.critChance = critChance;
+			this.name = name;
+			this.mainwindow = mainwindow;
+			buffsInit();
+			effectsInit();
+			setEnemy(enemy);
+			initComboList();
+			picturesInit(true);
+			parametersInit();
+			if (first)
+			{
+				x = -Constants.position;
+			}
+			else
+			{
+				x = Constants.position;
+			}
+			y = 0;
+		}
+
+		/**
+		 * конструктор для 2 фазы
+		 *
+		 * @param name
+		 */
+		public Char_Abstract(String name)
+		{
+			this.name = name;
+			picturesInit(false);
+		}
+
+		/**
+		 * в прыжке или в рывке ли противник? если да, то остановить прыжок или
+		 * рывок
+		 */
+		public void checkChargeAndJump()
+		{
+			try
+			{
+				if (enemy.getChargeAnimation().isEnable())
+				{
+					enemy.getChargeAnimation().delete();
+				}
+			}
+			catch (Exception e)
+			{
+			}
+			try
+			{
+				if (enemy.getJumpAnimation().isEnable())
+				{
+					enemy.getJumpAnimation().delete();
+				}
+			}
+			catch (Exception e)
+			{
+			}
+		}
+
+		/**
+		 * рассеивание некоторых бафов при атаке персонажа
+		 */
+		public void dispellBuffsOnAttack()
+		{
+			checkChargeAndJump();
+			enemy.buffs[Stun.id].dispell();
+			enemy.buffs[Stealth.id].dispell();
+			enemy.buffs[Storm.id].dispell();
+			enemy.buffs[SpellReflect.id].dispell();
+			enemy.buffs[Freeze.id].dispell();
+		}
+
+		/**
+		 * инициализация графики
+		 *
+		 * @param full все ли загружать картинки?
+		 */
+		private void picturesInit(boolean full)
+		{
+			icon = Constants.LoadImageFromFile("resources/characters/" + name + Pose.icon);
+			winStance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.winStance);
+			stanceAnimation = new StanceAnimation(this, 500);
+			stanceAnimation.start();
+			mainStance1 = Constants.LoadImageFromFile("resources/characters/" + name + Pose.mainStance1);
+			mainStance2 = Constants.LoadImageFromFile("resources/characters/" + name + Pose.mainStance2);
+			mainStance1Inv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.mainStanceinv1);
+			mainStance2Inv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.mainStanceinv2);
+			move1Stance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.move1);
+			move2Stance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.move2);
+			move3Stance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.move3);
+			move4Stance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.move4);
+			move1StanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.move1inv);
+			move2StanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.move2inv);
+			move3StanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.move3inv);
+			move4StanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.move4inv);
+			if (!full)
+			{
+				return;
+			}
+			jump1Stance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.jump1);
+			jump2Stance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.jump2);
+			jump3Stance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.jump3);
+			jump4Stance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.jump4);
+			jump1StanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.jump1inv);
+			jump2StanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.jump2inv);
+			jump3StanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.jump3inv);
+			jump4StanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.jump4inv);
+			lowhandStance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.lowhand);
+			lowhandStanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.lowhandinv);
+			highhandStance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.highhand);
+			highhandStanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.highhandinv);
+			lowkickStance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.lowkick);
+			lowkickStanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.lowkickinv);
+			highkickStance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.highkick);
+			highkickStanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.highkickinv);
+			blockPicStance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.blockPic);
+			blockStanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.blockinv);
+			chargePicStance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.chargePic);
+			chargeStanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.chargeinv);
+			uppercutPicStance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.uppercutPic);
+			uppercutStanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.uppercutinv);
+			powerfulkickPicStance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.powerfulkickPic);
+			powerfulkickStanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.powerfulkickinv);
+			downPicStance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.downPic);
+			downStanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.downinv);
+			gainPicStance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.gainPic);
+			gainStanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.gaininv);
+			deathPicStance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.deathPic);
+			deathStanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.deathinv);
+			stunPicStance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.stunPic);
+			stunStanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.stuninv);
+			castupPicStance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.castupPic);
+			castupStanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.castupinv);
+			castforwardPicStance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.castforwardPic);
+			castforwardStanceInv = Constants.LoadImageFromFile("resources/characters/" + name + Pose.castforwardinv);
+			storm1Stance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.stormStance1);
+			storm2Stance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.stormStance2);
+			storm3Stance = Constants.LoadImageFromFile("resources/characters/" + name + Pose.stormStance3);
+		}
+
+		/**
+		 * инициализация бафов
+		 */
+		private void buffsInit()
+		{
+			buffs[Stun.id] = new Stun();
+			buffs[Bubble.id] = new Bubble();
+			buffs[BlockBan.id] = new BlockBan();
+			buffs[Silence.id] = new Silence();
+			buffs[Cyclone.id] = new Cyclone();
+			buffs[ShadowForm.id] = new ShadowForm();
+			buffs[Stealth.id] = new Stealth();
+			buffs[Bleed.id] = new Bleed();
+			buffs[Blind.id] = new Blind();
+			buffs[BloodLast.id] = new BloodLast();
+			buffs[Storm.id] = new Storm();
+			buffs[SpellReflect.id] = new SpellReflect();
+			buffs[Freeze.id] = new Freeze();
+			buffs[IceShield.id] = new IceShield();
+			buffs[FireShield.id] = new FireShield();
+			buffs[FireDebuff.id] = new FireDebuff();
+			buffs[CurseLow.id] = new CurseLow();
+			buffs[CurseHigh.id] = new CurseHigh();
+		}
+
+		/**
+		 * инициализация эффектов
+		 */
+		private void effectsInit()
+		{
+			effects[EffectAbstract.armageddon] = new ZipEffect();
+			effects[EffectAbstract.bubble] = new ShieldEffect(EffectAbstract.bubble);
+			effects[EffectAbstract.bloodlast] = new UpEffect(EffectAbstract.bloodlast);
+			effects[EffectAbstract.curseHigh] = new Missile(EffectAbstract.curseHigh);
+			effects[EffectAbstract.curseLow] = new Missile(EffectAbstract.curseLow);
+			effects[EffectAbstract.cyclone] = new OnCharacterEffect(EffectAbstract.cyclone);
+			effects[EffectAbstract.energybolt] = new Missile(EffectAbstract.energybolt);
+			effects[EffectAbstract.enrage] = new UpEffect(EffectAbstract.enrage);
+			effects[EffectAbstract.fireball] = new Missile(EffectAbstract.fireball);
+			effects[EffectAbstract.freeze] = new OnCharacterEffect(EffectAbstract.freeze);
+			effects[EffectAbstract.freezebolt] = new Missile(EffectAbstract.freezebolt);
+			effects[EffectAbstract.frostbolt] = new Missile(EffectAbstract.frostbolt);
+			effects[EffectAbstract.frostenrage] = new UpEffect(EffectAbstract.frostenrage);
+			effects[EffectAbstract.frosttrap] = new Trap(EffectAbstract.frosttrap);
+			effects[EffectAbstract.heal] = new UpEffect(EffectAbstract.heal);
+			effects[EffectAbstract.iceshield] = new ShieldEffect(EffectAbstract.iceshield);
+			effects[EffectAbstract.stone] = new Missile(EffectAbstract.stone);
+			effects[EffectAbstract.fireshield] = new ShieldEffect(EffectAbstract.fireshield);
+			effects[EffectAbstract.shadowboltMissile] = new Missile(EffectAbstract.shadowboltMissile);
+			effects[EffectAbstract.shadowFrost] = new OnCharacterEffect(EffectAbstract.shadowFrost);
+			effects[EffectAbstract.deathgrip] = new DeathGripEffect();
+		}
+
+		/**
+		 * инициализация игровых параметров, влияющих на баланс
+		 */
+		private void parametersInit()
+		{
+			hp = getHpMax();
+			setDamageReduction();
+		}
+
+		/**
+		 * 1-ая спец.способность
+		 */
+		public abstract void ability1();
+
+		/**
+		 * 2-ая спец.способность
+		 */
+		public abstract void ability2();
+
+		/**
+		 * 3-ая спец.способность
+		 */
+		public abstract void ability3();
+
+		/**
+		 * @param ID персонажа
+		 */
+		public abstract int getID();
+
+		/**
+		 * метод, возвращающий документацию
+		 *
+		 * @return документация по персонажу, готовая для отображения
+		 */
+		abstract public String[] getDocumentationTextForSee();
+
+		/**
+		 * @param hp the hp to set
+		 */
+		public void setHp(int hp)
+		{
+			this.hp = hp;
+			if (this.getHp() > getHpMax())
+			{
+				this.hp = getHpMax();
+			}
+			if (this.getHp() < 0)
+			{
+				this.hp = 0;
+				death();
+			}
+		}
+
+		/**
+		 * @param armor the armor to set
+		 */
+		public void setArmor(int armor)
+		{
+			this.armor = armor;
+			if (this.getArmor() > 10)
+			{
+				this.armor = 10;
+			}
+			if (this.getArmor() < 0)
+			{
+				this.armor = 0;
+			}
+		}
+
+		/**
+		 * @param damageReduction the damageReduction to set
+		 */
+		public void setDamageReduction()
+		{
+			this.damageReduction = 1.0 - armor * GameBalanceConstants.armorReductionDamage;
+		}
+
+		/**
+		 * действия при смерти
+		 */
+		private void death()
+		{
+			mainwindow.getFight_Panel().endRound(!first);
+		}
+
+		/**
+		 * @return the hpMax
+		 */
+		public int getHpMax()
+		{
+			return hpMax;
+		}
+
+		/**
+		 * @return the hp
+		 */
+		public int getHp()
+		{
+			return hp;
+		}
+
+		/**
+		 * @return the armor
+		 */
+		public int getArmor()
+		{
+			return armor;
+		}
+
+		/**
+		 * @return the damageReduction
+		 */
+		public double getDamageReduction()
+		{
+			return damageReduction;
+		}
+
+		/**
+		 * @return the critChance
+		 */
+		public double getCritChance()
+		{
+			return critChance;
+		}
+
+		/**
+		 * @return the pose
+		 */
+		public int getPose()
+		{
+			return pose;
+		}
+
+		/**
+		 * @return the x
+		 */
+		public int getX()
+		{
+			return x;
+		}
+
+		/**
+		 * @return the y
+		 */
+		public int getY()
+		{
+			return y;
+		}
+
+		/**
+		 * @return the first
+		 */
+		public boolean getPlayer()
+		{
+			return first;
+		}
+
+		/**
+		 * @return the name
+		 */
+		public String getName()
+		{
+			return name;
+		}
+
+		/**
+		 * @return the icon
+		 */
+		public Image getIcon()
+		{
+			return icon;
+		}
+
+		/**
+		 * изменение позиции для анимированных поз
+		 */
+		public void ChangePositionStance()
+		{
+			mainstancePosition = !mainstancePosition;
+			movePosition++;
+			jumpPosition++;
+			stormPosition++;
+			if (movePosition == 5)
+			{
+				movePosition = 1;
+			}
+			if (jumpPosition == 5)
+			{
+				jumpPosition = 1;
+			}
+			if (stormPosition == 4)
+			{
+				stormPosition = 1;
+			}
+		}
+
+		/**
+		 * преобразовывает внутриигровую координату Х в координату Х на панели Java
+		 *
+		 * @param scale масштаб
+		 * @param wight ширина панели
+		 * @param height высота панели
+		 * @return координата Х
+		 */
+		public int getPosXForGraphics(double scale, double wight, double height)
+		{
+			double xBegin = x + Constants.pixelsInNormalScale * Constants.invScale(scale);
+			double pixelsGameCount = Constants.invScale(scale) * Constants.pixelsInNormalScale * 2;
+			return (int)((xBegin * wight) / pixelsGameCount - getSizeForGraphics(scale, height) * 0.5);
+		}
+
+		/**
+		 * преобразовывает внутриигровую координату У в координату У на панели Java
+		 *
+		 * @param scale масштаб
+		 * @param height высота панели
+		 * @return координата У
+		 */
+		public int getPosYForGraphics(double scale, double height)
+		{
+			return (int)(height / 2 - y * scale);
+		}
+
+		/**
+		 * Возвращает размер обьектов, которые надо отрисовать
+		 *
+		 * @param scale масштаб
+		 * @param height высота панели
+		 * @return размер обьекта для отрисовки
+		 */
+		public int getSizeForGraphics(double scale, double height)
+		{
+			return (int)(scale * Constants.sizeNormalScale * height);
+		}
+
+		/**
+		 * возвращает изображение, соответствующее позе персонажа в текущий момент
+		 * времени
+		 *
+		 * @return изображение
+		 */
+		public Image getImage()
+		{
+			switch (pose)
+			{
+				case Pose.MAIN:
+					if (isInv())
+					{
+						return getMainStanceInv();
+					}
+					return getMainStance();
+				case Pose.WIN:
+					return getWinStance();
+				case Pose.MOVE:
+					if (isInv())
+					{
+						return getMoveStanceInv();
+					}
+					return getMoveStance();
+				case Pose.JUMP:
+					if (isInv())
+					{
+						return getJumpStanceInv();
+					}
+					return getJumpStance();
+				case Pose.LOWHAND:
+					if (isInv())
+					{
+						return lowhandStanceInv;
+					}
+					return lowhandStance;
+				case Pose.HIGHHAND:
+					if (isInv())
+					{
+						return highhandStanceInv;
+					}
+					return highhandStance;
+				case Pose.LOWKICK:
+					if (isInv())
+					{
+						return lowkickStanceInv;
+					}
+					return lowkickStance;
+				case Pose.HIGHKICK:
+					if (isInv())
+					{
+						return highkickStanceInv;
+					}
+					return highkickStance;
+				case Pose.BLOCK:
+					if (isInv())
+					{
+						return blockStanceInv;
+					}
+					return blockPicStance;
+				case Pose.CHARGE:
+					if (isInv())
+					{
+						return chargeStanceInv;
+					}
+					return chargePicStance;
+				case Pose.UPPERCUT:
+					if (isInv())
+					{
+						return uppercutStanceInv;
+					}
+					return uppercutPicStance;
+				case Pose.POWERFULKICK:
+					if (isInv())
+					{
+						return powerfulkickStanceInv;
+					}
+					return powerfulkickPicStance;
+				case Pose.DOWN:
+					if (isInv())
+					{
+						return downStanceInv;
+					}
+					return downPicStance;
+				case Pose.DAMAGEGAIN:
+					if (isInv())
+					{
+						return gainStanceInv;
+					}
+					return gainPicStance;
+				case Pose.DEATH:
+					if (isInv())
+					{
+						return deathStanceInv;
+					}
+					return deathPicStance;
+				case Pose.STUNNED:
+					if (isInv())
+					{
+						return stunStanceInv;
+					}
+					return stunPicStance;
+				case Pose.CASTUP:
+					if (isInv())
+					{
+						return castupStanceInv;
+					}
+					return castupPicStance;
+				case Pose.CASTFORWARD:
+					if (isInv())
+					{
+						return castforwardStanceInv;
+					}
+					return castforwardPicStance;
+				case Pose.STORM:
+					return getStormStance();
+				default:
+					return Constants.getNUIImage();
+			}
+		}
+
+		/**
+		 *
+		 * @return возвращает главную стойку лицом вправо
+		 */
+		public Image getMainStance()
+		{
+			if (mainstancePosition)
+			{
+				return mainStance1;
+			}
+			else
+			{
+				return mainStance2;
+			}
+		}
+
+		/**
+		 *
+		 * @return возвращает главную стойку лицом влево
+		 */
+		public Image getMainStanceInv()
+		{
+			if (mainstancePosition)
+			{
+				return mainStance1Inv;
+			}
+			else
+			{
+				return mainStance2Inv;
+			}
+		}
+
+		public void stopPeriodicEvents()
+		{
+			stanceAnimation.delete();
+		}
+
+		/**
+		 * останавливает все периодические события
+		 */
+		public void stopPeriodicEvents(boolean isWinner)
+		{
+			try
+			{
+				jumpAnimation.delete();
+			}
+			catch (Exception e)
+			{
+			}
+			try
+			{
+				chargeAnimation.delete();
+			}
+			catch (Exception e)
+			{
+			}
+			try
+			{
+				stanceAnimation.delete();
+			}
+			catch (Exception e)
+			{
+			}
+
+			for (int i = 0; i < buffs.length; i++)
+			{
+				try
+				{
+					buffs[i].delete();
+				}
+				catch (Exception e)
+				{
+				}
+			}
+			for (int i = 0; i < effects.length; i++)
+			{
+				try
+				{
+					effects[i].dispell();
+				}
+				catch (Exception e)
+				{
+				}
+			}
+			abled = false;
+			enemy.setAbled(false);
+			if (isWinner)
+			{
+				enemy.setPose(Pose.DEATH);
+				setPose(Pose.WIN);
+			}
+			else
+			{
+				setPose(Pose.DEATH);
+				enemy.setPose(Pose.WIN);
+			}
+		}
+
+		/**
+		 * @return the winStance
+		 */
+		public Image getWinStance()
+		{
+			return winStance;
+		}
+
+		/**
+		 * в какую сторону смотрит игрок?
+		 *
+		 * @return да - влево, нет - направо
+		 */
+		public boolean isInv()
+		{
+			if (getX() < enemy.getX())
+			{
+				return false;
+			}
+			return true;
+		}
+
+		/**
+		 * @return возвращает стойку в движении лицом вправо
+		 */
+		public Image getMoveStance()
+		{
+			switch (movePosition)
+			{
+				case 1:
+					return move1Stance;
+				case 2:
+					return move2Stance;
+				case 3:
+					return move3Stance;
+				case 4:
+					return move4Stance;
+				default:
+					return null;
+			}
+		}
+
+		/**
+		 *
+		 * @return возвращает стойку в движении лицом влево
+		 */
+		public Image getMoveStanceInv()
+		{
+			switch (movePosition)
+			{
+				case 1:
+					return move1StanceInv;
+				case 2:
+					return move2StanceInv;
+				case 3:
+					return move3StanceInv;
+				case 4:
+					return move4StanceInv;
+				default:
+					return null;
+			}
+		}
+
+		/**
+		 *
+		 * @return возвращает стойку в прыжке направо
+		 */
+		public Image getJumpStance()
+		{
+			switch (jumpPosition)
+			{
+				case 1:
+					return jump1Stance;
+				case 2:
+					return jump2Stance;
+				case 3:
+					return jump3Stance;
+				case 4:
+					return jump4Stance;
+				default:
+					return null;
+			}
+		}
+
+		/**
+		 *
+		 * @return возвращает стойку в прыжке лицом налево
+		 */
+		public Image getJumpStanceInv()
+		{
+			switch (jumpPosition)
+			{
+				case 1:
+					return jump1StanceInv;
+				case 2:
+					return jump2StanceInv;
+				case 3:
+					return jump3StanceInv;
+				case 4:
+					return jump4StanceInv;
+				default:
+					return null;
+			}
+		}
+
+		/**
+		 *
+		 * @return возвращает стойку в вихре
+		 */
+		public Image getStormStance()
+		{
+			switch (stormPosition)
+			{
+				case 1:
+					return storm1Stance;
+				case 2:
+					return storm2Stance;
+				case 3:
+					return storm3Stance;
+				default:
+					return null;
+			}
+		}
+
+		/**
+		 * @param enemy the enemy to set
+		 */
+		public final void setEnemy(Char_Abstract enemy)
+		{
+			this.enemy = enemy;
+			if ((this instanceof Char_2Healer) && (enemy instanceof Char_2Healer) && (enemy != null)) {
+				ability3();
+			}
+		}
+
+		/**
+		 * определяет оставшееся количество ХП в процентах
+		 *
+		 * @return количество ХП в процентах
+		 */
+		public double getHPPersent()
+		{
+			return (double)hp / (double)hpMax;
+		}
+
+		/**
+		 * генерация дамага на сервере
+		 *
+		 * @param damageGenerate урон
+		 * @param phisical физический ли?
+		 */
+		public void damageGenerate(int damage, boolean phisical)
+		{
+			int damageTotal = damage;
+			boolean block = false;
+			if (buffs[ShadowForm.id].isEnable())
+			{
+				damageTotal *= GameBalanceConstants.shadowFormDamageCoefficient;
+			}
+			if (enemy.buffs[BloodLast.id].isEnable())
+			{
+				damageTotal += damageTotal * enemy.buffs[BloodLast.id].getStacks() / 100.0;
+			}
+			if (pose == Pose.BLOCK)
+			{
+				damageTotal = damageTotal / 5;
+				block = true;
+			}
+			if (buffs[IceShield.id].isEnable())
+			{
+				damageGenerateAbsorb(damageTotal, phisical, buffs[IceShield.id], block);
+				return;
+			}
+			if (buffs[FireShield.id].isEnable() && phisical)
+			{
+				damageGenerateAbsorb(damageTotal, phisical, buffs[FireShield.id], block);
+				return;
+			}
+			if (phisical)
+			{
+				if (Math.random() < enemy.critChance)
+				{
+					damageTotal = (int)Math.round(damageTotal * damageReduction * 2);
+					damage(new Damage(first, damageTotal, true, block, false));
+				}
+				else
+				{
+					damageTotal = (int)Math.round(damageTotal * damageReduction);
+					damage(new Damage(first, damageTotal, false, block, false));
+				}
+			}
+			else
+			{
+				damage(new Damage(first, damageTotal, false, block, false));
+			}
+		}
+
+		/**
+		 * генерация лечения на сервере
+		 *
+		 * @param heal лечение
+		 */
+		public void healGenerate(int heal)
+		{
+			if (hp < 1) return;
+			if (enemy instanceof Char_1Fury) {
+				heal = heal / 5;
+			}
+			damage(new Damage(first, -heal, false, false, false));
+		}
+
+		/**
+		 * само нанесение урона + анимация дамага (сервер)
+		 *
+		 * @param damage
+		 */
+		public void damage(Damage damage)
+		{
+			damagesAnimations.add(new DamagesAnimation(damage));
+			if ((this instanceof Char_2Healer) && !(enemy instanceof Char_2Healer)
+
+				&& !(buffs[ShadowForm.id].isEnable()) && (damage.getDamage() > 4)) {
+				enemy.damageGenerate(damage.getDamage() / 4, false);
+			}
+			setHp(hp - damage.getDamage());
+			CombatLogWriter combatLogWriter = new CombatLogWriter(damage, mainwindow);
+		}
+
+		/**
+		 * поглощение урона (без проверки на тип)
+		 *
+		 * @param damageTotal вошедший урон
+		 * @param phisical физический ли?
+		 * @param shieldBuff баф, который отвечает за поглощение
+		 */
+		private void damageGenerateAbsorb(int damageTotal, boolean phisical, BuffAbstract shieldBuff, boolean block)
+		{
+			Damage needToAbsorbedDamage;
+			if (phisical)
+			{
+				if (Math.random() < enemy.critChance)
+				{
+					damageTotal = (int)Math.round(damageTotal * damageReduction * 2);
+					needToAbsorbedDamage = new Damage(first, damageTotal, true, block, false);
+				}
+				else
+				{
+					damageTotal = (int)Math.round(damageTotal * damageReduction);
+					needToAbsorbedDamage = new Damage(first, damageTotal, false, block, false);
+				}
+			}
+			else
+			{
+				needToAbsorbedDamage = new Damage(first, damageTotal, false, block, false);
+			}
+			if (needToAbsorbedDamage.getDamage() < shieldBuff.getStacks())
+			{
+				//полностью уходим в абсорб
+				shieldBuff.setStacks(shieldBuff.getStacks() - needToAbsorbedDamage.getDamage());
+				damage(new Damage(first, 0, phisical, block, true));
+			}
+			else
+			{
+				//пробиваем абсорб
+				needToAbsorbedDamage.absorb(shieldBuff.getStacks());
+				damage(new Damage(first, needToAbsorbedDamage.getDamage(), phisical, block, false));
+				shieldBuff.dispell();
+
+			}
+		}
+
+		/**
+		 * добавление анимации для дамага у клиента
+		 *
+		 * @param damage урон
+		 */
+		public void damageForClient(Damage damage)
+		{
+			damagesAnimations.add(new DamagesAnimation(damage));
+		}
+
+		/**
+		 * @param x the x to set
+		 */
+		public void setX(int x)
+		{
+			this.x = x;
+			if (x < -Constants.pixelsTotal)
+			{
+				this.x = -Constants.pixelsTotal;
+				if (enemy.getX() == -Constants.pixelsTotal)
+				{
+					enemy.setX(-Constants.pixelsTotal + 50);
+				}
+			}
+			if (x > Constants.pixelsTotal)
+			{
+				this.x = Constants.pixelsTotal;
+				if (enemy.getX() == Constants.pixelsTotal)
+				{
+					enemy.setX(Constants.pixelsTotal - 50);
+				}
+			}
+		}
+
+		/**
+		 * @param y the y to set
+		 */
+		public void setY(int y)
+		{
+			this.y = y;
+			if (y < 0)
+			{
+				this.y = 0;
+			}
+		}
+
+		/**
+		 * @param pose the pose to set
+		 */
+		public void setPose(int pose)
+		{
+			this.pose = pose;
+		}
+
+		/**
+		 * @param stormPosition the stormPosition to set
+		 */
+		public void setStormPosition(int stormPosition)
+		{
+			this.stormPosition = stormPosition;
+		}
+
+		/**
+		 * идем налево
+		 */
+		public void moveLeft()
+		{
+			if (!abled)
+			{
+				return;
+			}
+			setX(x - GameBalanceConstants.moveSpeed);
+			setPose(Pose.MOVE);
+		}
+
+		/**
+		 * идем направо
+		 */
+		public void moveRight()
+		{
+			if (!abled)
+			{
+				return;
+			}
+			setX(x + GameBalanceConstants.moveSpeed);
+			setPose(Pose.MOVE);
+		}
+
+		/**
+		 * присели
+		 */
+		public void down()
+		{
+			if (!abled)
+			{
+				return;
+			}
+			setPose(Pose.DOWN);
+		}
+
+		/**
+		 * вернулись в исходную стойку
+		 */
+		public void toNormal()
+		{
+			if ((pose == Pose.MOVE) || (pose == Pose.DOWN) || (pose == Pose.BLOCK))
+			{
+				setPose(Pose.MAIN);
+			}
+		}
+
+		/**
+		 * встали в блок
+		 */
+		public void block()
+		{
+			if (!abled)
+			{
+				return;
+			}
+			if (buffs[2].isEnable())
+			{
+				return;
+			}
+			setPose(Pose.BLOCK);
+		}
+
+		/**
+		 * прыгаем ровно
+		 */
+		public void jumpNormal()
+		{
+			if (!abled)
+			{
+				return;
+			}
+			if (!jumpCD.ready())
+			{
+				return;
+			}
+			abled = false;
+			jumpCD = new Cooldown(GameBalanceConstants.globalCD);
+			jumpAnimation = new JumpAnimation(this, 0);
+		}
+
+		/**
+		 * прыгаем налево
+		 */
+		public void jumpLeft()
+		{
+			if (!abled)
+			{
+				return;
+			}
+			if (!jumpCD.ready())
+			{
+				return;
+			}
+			jumpCD = new Cooldown(GameBalanceConstants.globalCD);
+			abled = false;
+			jumpAnimation = new JumpAnimation(this, -1);
+		}
+
+		/**
+		 * прыгаем направо
+		 */
+		public void jumpRight()
+		{
+			if (!abled)
+			{
+				return;
+			}
+			if (!jumpCD.ready())
+			{
+				return;
+			}
+			jumpCD = new Cooldown(GameBalanceConstants.globalCD);
+			abled = false;
+			jumpAnimation = new JumpAnimation(this, 1);
+		}
+
+		/**
+		 * класс атак (вызывать для того, кто атакует)
+		 *
+		 * @param codeForCombo код удара (для комбинаций)
+		 * @param pose поза, которую должен принять персонаж после нанесения удара
+		 * @param damage урон от удара
+		 * @param finisher является ли завершающим?
+		 */
+		public void attack(String codeForCombo, int pose, int damage, boolean finisher)
+		{
+			if (combo.equals(""))
+			{
+				if (!abled)
+				{
+					return;
+				}
+				this.pose = pose;
+				if ((getDistance() < Constants.meleeDistance) && (!enemy.isInvinsible()) && isHit(codeForCombo.charAt(0), enemy))
+				{
+					if (!finisher)
+					{
+						combo = codeForCombo;
+					}
+					lastAttack = codeForCombo.charAt(0);
+					if (enemy.getPose() != Pose.BLOCK)
+					{
+						enemy.setPose(Pose.DAMAGEGAIN);
+						checkChargeAndJump();
+						enemy.setAbled(false);
+						if (finisher)
+						{
+							ComboWaiter.enemyFlyStart(this, getTypeOfFlyOnLastAttack(lastAttack));
+						}
+					}
+					enemy.damageGenerate(damage, true);
+					soundGenerate(lastAttack);
+					dispellBuffsOnAttack();
+					if (finisher)
+					{
+						delayAfterCombo = new DelayAfterCombo(this, GameBalanceConstants.latencyAfterHit);
+					}
+					else
+					{
+						comboWaiter = new ComboWaiter(this);
+					}
+				}
+				else
+				{
+					delayAfterCombo = new DelayAfterCombo(this, GameBalanceConstants.latencyAfterMiss);
+				}
+			}
+			else
+			{
+				if (verifyCombos(combo.concat(codeForCombo)))
+				{
+					combo = combo.concat(codeForCombo);
+					lastAttack = codeForCombo.charAt(0);
+					this.pose = pose;
+					if (getDistance() < Constants.meleeDistance)
+					{
+						enemy.damageGenerate(damage, true);
+						soundGenerate(lastAttack);
+						if (finisher)
+						{
+							delayAfterCombo = new DelayAfterCombo(this, GameBalanceConstants.latencyAfterHit);
+						}
+						else
+						{
+							comboWaiter.renew();
+						}
+					}
+					else
+					{
+						delayAfterCombo = new DelayAfterCombo(this, GameBalanceConstants.latencyAfterHit);
+					}
+				}
+			}
+		}
+
+		/**
+		 * нижний удар рукой
+		 */
+		public void lowHandAttack()
+		{
+			attack("a", Pose.LOWHAND,
+					GameBalanceConstants.baseDamageLowHand,
+					false);
+		}
+
+		/**
+		 * верхний удар рукой
+		 */
+		public void highHandAttack()
+		{
+			attack("x", Pose.HIGHHAND,
+					GameBalanceConstants.baseDamageHighHand,
+					false);
+		}
+
+		/**
+		 * нижний удар ногой
+		 */
+		public void lowKickAttack()
+		{
+			attack("c", Pose.LOWKICK,
+					GameBalanceConstants.baseDamageLowKick,
+					false);
+		}
+
+		/**
+		 * верхний удар ногой
+		 */
+		public void highKickAttack()
+		{
+			attack("z", Pose.HIGHKICK,
+					GameBalanceConstants.baseDamageHighKick,
+					false);
+		}
+
+		/**
+		 * апперкот
+		 */
+		public void uppercutAttack()
+		{
+			attack("X", Pose.UPPERCUT,
+					GameBalanceConstants.baseDamageUppercut,
+					true);
+		}
+
+		/**
+		 * удар с разворота с пробиванием блока
+		 */
+		public void powerfulKickAttack()
+		{
+			if ((getDistance() < Constants.meleeDistance) && (enemy.getPose() == Pose.BLOCK) && (!enemy.isInvinsible()))
+			{
+				enemy.setPose(Pose.DAMAGEGAIN);
+			}
+			attack("Z", Pose.POWERFULKICK,
+					GameBalanceConstants.baseDamagePowerfulKick,
+					true);
+		}
+
+		/**
+		 * рывок
+		 */
+		public void charge()
+		{
+			if (!abled)
+			{
+				return;
+			}
+			if (!chargeCD.ready())
+			{
+				return;
+			}
+			chargeCD = new Cooldown(GameBalanceConstants.baseChargeCD);
+			abled = false;
+			chargeAnimation = new ChargeAnimation(this, (isInv()) ? -1 : 1);
+		}
+
+		/**
+		 * @param abled the abled to set
+		 */
+		public void setAbled(boolean abled)
+		{
+			this.abled = abled;
+		}
+
+		/**
+		 * @return the enemy
+		 */
+		public Char_Abstract getEnemy()
+		{
+			return enemy;
+		}
+
+		/**
+		 *
+		 * @return дистанцию между врагами
+		 */
+		public int getDistance()
+		{
+			return (int)Math.abs(x - enemy.getX());
+		}
+
+		/**
+		 * @return the chargeCD
+		 */
+		public Cooldown getChargeCD()
+		{
+			return chargeCD;
+		}
+
+		/**
+		 * инициализация комбинаций
+		 */
+		private void initComboList()
+		{
+			comboList.add("x");
+			comboList.add("a");
+			comboList.add("c");
+			comboList.add("z");
+			comboList.add("X");
+			comboList.add("Z");
+			comboList.add("zxzc");
+			comboList.add("xacza");
+			comboList.add("xzczxZ");
+			comboList.add("xzxzcaX");
+			if (this instanceof Char_5Combinator) {
+				comboList.add("xaczacaczZ");
+				comboList.add("xzxzcxzxzcaX");
+			}
+			if ((this instanceof Char_4Burster) || (this instanceof Char_3Stealther)) {
+				comboList.add("xaczacaczZ");
+			}
+			if (this instanceof Char_0Tank) {
+				comboList.add("sx");
+				comboList.add("sa");
+				comboList.add("sc");
+				comboList.add("sz");
+				comboList.add("sX");
+				comboList.add("sZ");
+				comboList.add("szxzc");
+				comboList.add("sxacza");
+				comboList.add("sxzczxZ");
+				comboList.add("sxzxzcaX");
+			}
+		}
+
+		/**
+		 * проверка. вводимая комбинация соответствует одной из данных или нет?
+		 *
+		 * @param combo комбо
+		 * @return да или нет
+		 */
+		private boolean verifyCombos(String combo)
+		{
+			for (int i = 0; i < comboList.size(); i++)
+			{
+				if (verifyComboAtOneCombo(combo, i))
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
+		/**
+		 * проверка. вводимая комбинация соответствует ли данной?
+		 *
+		 * @param combo комбо
+		 * @param index индекс данной комбинации
+		 * @return да или нет
+		 */
+		private boolean verifyComboAtOneCombo(String combo, int index)
+		{
+			if (comboList.get(index).length() < combo.length())
+			{
+				return false;
+			}
+			for (int i = 0; i < combo.length(); i++)
+			{
+				if (combo.charAt(i) != comboList.get(index).charAt(i))
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+
+		/**
+		 * @param combo the combo to set
+		 */
+		public void setCombo(String combo)
+		{
+			this.combo = combo;
+		}
+
+		/**
+		 *
+		 * @return последняя атака
+		 */
+		public char getLastAttack()
+		{
+			return lastAttack;
+		}
+
+		/**
+		 * @return the invinsible
+		 */
+		public boolean isInvinsible()
+		{
+			return (buffs[Bubble.id].isEnable() || buffs[Cyclone.id].isEnable());
+		}
+
+		public boolean isSilenced()
+		{
+			return buffs[Silence.id].isEnable();
+		}
+
+		/**
+		 * мертв ли игрок?
+		 *
+		 * @return
+		 */
+		public boolean isDead()
+		{
+			if (hp < 1)
+			{
+				return true;
+			}
+			return false;
+		}
+
+		/**
+		 * @return the cd1
+		 */
+		public Cooldown getCd1()
+		{
+			return cd1;
+		}
+
+		/**
+		 * @return the cd2
+		 */
+		public Cooldown getCd2()
+		{
+			return cd2;
+		}
+
+		/**
+		 * @return the cd3
+		 */
+		public Cooldown getCd3()
+		{
+			return cd3;
+		}
+
+		/**
+		 * @param cd1 the cd1 to set
+		 */
+		public void setCd1(Cooldown cd1)
+		{
+			this.cd1 = cd1;
+		}
+
+		/**
+		 * @param cd2 the cd2 to set
+		 */
+		public void setCd2(Cooldown cd2)
+		{
+			this.cd2 = cd2;
+		}
+
+		/**
+		 * @param cd3 the cd3 to set
+		 */
+		public void setCd3(Cooldown cd3)
+		{
+			this.cd3 = cd3;
+		}
+
+		/**
+		 * @return the jumpAnimation
+		 */
+		public JumpAnimation getJumpAnimation()
+		{
+			return jumpAnimation;
+		}
+
+		/**
+		 * @return the delayAfterCombo
+		 */
+		public DelayAfterCombo getDelayAfterCombo()
+		{
+			return delayAfterCombo;
+		}
+
+		/**
+		 * @return the chargeAnimation
+		 */
+		public ChargeAnimation getChargeAnimation()
+		{
+			return chargeAnimation;
+		}
+
+		/**
+		 * @param comboWaiter the comboWaiter to set
+		 */
+		public void setComboWaiter(ComboWaiter comboWaiter)
+		{
+			this.comboWaiter = comboWaiter;
+		}
+
+		/**
+		 * получение данных от сервера и применение их к клиентскому классу
+		 *
+		 * @param arguments аргументы - ХП, х, у, поза, кд рывка и 3-х способностей
+		 */
+		public void setDataForClient(int[] arguments)
+		{
+			this.hp = arguments[0];
+			this.x = arguments[1];
+			this.y = arguments[2];
+			this.pose = arguments[3];
+			this.chargeCD.createFake(arguments[4]);
+			this.cd1.createFake(arguments[5]);
+			this.cd2.createFake(arguments[6]);
+			this.cd3.createFake(arguments[7]);
+			if (hp < 1) death();
+		}
+
+		/**
+		 * генерируем звук от атаки
+		 *
+		 * @param lastAttack последняя атака
+		 */
+		private void soundGenerate(char lastAttack)
+		{
+			switch (lastAttack)
+			{
+				case 'x':
+					Constants.playSoundOnBothComputers(mainwindow, SoundSystem.highhand);
+					break;
+				case 'a':
+					Constants.playSoundOnBothComputers(mainwindow, SoundSystem.lowhand);
+					break;
+				case 'z':
+					Constants.playSoundOnBothComputers(mainwindow, SoundSystem.highkick);
+					break;
+				case 'c':
+					Constants.playSoundOnBothComputers(mainwindow, SoundSystem.lowkick);
+					break;
+				case 'X':
+					Constants.playSoundOnBothComputers(mainwindow, SoundSystem.uppercut);
+					break;
+				case 'Z':
+					Constants.playSoundOnBothComputers(mainwindow, SoundSystem.powerfulkick);
+					break;
+				case 'P':
+					Constants.playSoundOnBothComputers(mainwindow, SoundSystem.uppercut);
+					break;
+				case 's':
+					Constants.playSoundOnBothComputers(mainwindow, SoundSystem.tanksstrike);
+					break;
+				case 'l':
+					Constants.playSoundOnBothComputers(mainwindow, SoundSystem.powerkickfury);
+					break;
+				case 'A':
+					Constants.playSoundOnBothComputers(mainwindow, SoundSystem.amblush);
+					break;
+				default:
+			}
+		}
+
+		/**
+		 * выполняется ли для атаки условия попадания в цель? метод нужен для того,
+		 * чтобы верхние удары не попадали по сидячим персонажам итд
+		 *
+		 * @param charAt атака
+		 * @param enemy враг
+		 * @return да или нет?
+		 */
+		private boolean isHit(char charAt, Char_Abstract enemy)
+		{
+			if ((charAt == 'x') || (charAt == 'z') || (charAt == 'Z') || (charAt == 'X') || (charAt == 'l'))
+			{
+				if (enemy.getPose() == Pose.DOWN)
+				{
+					return false;
+				}
+			}
+			if ((charAt == 'a') || (charAt == 'c') || (charAt == 'P') || (charAt == 's') || (charAt == 'A'))
+			{
+				if (enemy.getY() > 0)
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+
+		/**
+		 * как будет улетать наш соперник?
+		 *
+		 * @param lastAttack последняя атака
+		 * @return тип улета
+		 */
+		public int getTypeOfFlyOnLastAttack(char lastAttack)
+		{
+			switch (lastAttack)
+			{
+				case 'X':
+				case 'P':
+					return 0;
+				case 'Z':
+				case 'a':
+					return 1;
+				case 'c':
+					return 3;
+				default:
+					return 2;
+			}
+		}
+	}
+
+}

@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeejayEntertainment.UnarmedDuallingClub.UI", "DeejayEntertainment.UnarmedDuallingClub.UI\DeejayEntertainment.UnarmedDuallingClub.UI.csproj", "{B60DB995-A1D5-46F5-99EE-9D99D157A7EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeejayEntertainment.UnarmedDuallingClub.GameCore", "DeejayEntertainment.UnarmedDuallingClub.GameCore\DeejayEntertainment.UnarmedDuallingClub.GameCore.csproj", "{A4F20E49-F8BA-44D6-A013-CF9C40A80850}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeejayEntertainment.UnarmedDuallingClub.Configuration", "DeejayEntertainment.UnarmedDuallingClub.Configuration\DeejayEntertainment.UnarmedDuallingClub.Configuration.csproj", "{AB5780E7-B4A4-4DF3-AA76-8919FB7A18FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B60DB995-A1D5-46F5-99EE-9D99D157A7EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B60DB995-A1D5-46F5-99EE-9D99D157A7EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B60DB995-A1D5-46F5-99EE-9D99D157A7EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B60DB995-A1D5-46F5-99EE-9D99D157A7EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4F20E49-F8BA-44D6-A013-CF9C40A80850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4F20E49-F8BA-44D6-A013-CF9C40A80850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4F20E49-F8BA-44D6-A013-CF9C40A80850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4F20E49-F8BA-44D6-A013-CF9C40A80850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB5780E7-B4A4-4DF3-AA76-8919FB7A18FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB5780E7-B4A4-4DF3-AA76-8919FB7A18FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB5780E7-B4A4-4DF3-AA76-8919FB7A18FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB5780E7-B4A4-4DF3-AA76-8919FB7A18FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {510ACD13-0C1A-4D76-9DC6-588D68576FBE}
+	EndGlobalSection
+EndGlobal
