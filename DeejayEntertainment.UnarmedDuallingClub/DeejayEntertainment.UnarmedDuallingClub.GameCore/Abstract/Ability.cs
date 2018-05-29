@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Abstract
 {
-	public class Ability
+	public abstract class Ability
 	{
 	}
 }

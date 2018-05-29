@@ -1,13 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DeejayEntertainment.UnarmedDuallingClub.GameCore.Configuration;
+using System;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Abstract
 {
-	public class Character
+	public abstract class Character
 	{
+		/// <summary>
+		/// имя персонажа
+		/// </summary>
+		public abstract string Name { get; }
+
+		/// <summary>
+		/// максимальные ХП
+		/// </summary>
+		public int MaxHp { get; protected set; }
+
+		/// <summary>
+		/// текущие ХП
+		/// </summary>
+		public int CurrentHp { get; private set; }
+
+		/// <summary>
+		/// броня
+		/// </summary>
+		public int Armor { get; protected set; }
+
+		/// <summary>
+		/// коэффициент снижения урона от брони
+		/// </summary>
+		public double ArmorDamageReduction
+		{
+			get
+			{
+				return 1.0 - (Armor * GameBalanceConfigurationManager.Configuration.ArmorReduction 
+					/ (1 + Armor * GameBalanceConfigurationManager.Configuration.ArmorReduction));
+			}
+		}
+
+		public int CritChance { get; protected set; }
+
 		public void DealMagicalDamage(int damage)
 		{
 			throw new NotImplementedException();
@@ -19,23 +50,6 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Abstract
 		}
 	}
 
-	/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-	package Characters;
-
-	import Buffs.*;
-	import Effects.*;
-	import Mainpack.Constants;
-	import Mainpack.MainWindow_Window;
-	import MultiMediaSystem.SoundSystem;
-	import NetWorkSystem.CombatLogWriter;
-	import NetWorkSystem.Damage;
-	import PeriodicEvents.*;
-	import java.awt.Image;
-	import java.util.ArrayList;
-
 	/**
 	 * Абстрактный класс персонажей. Содержит все методы общие для всех персонажей.
 	 *
@@ -44,26 +58,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Abstract
 	public abstract class Char_Abstract
 	{
 
-		/**
-		 * имя персонажа
-		 */
-		String name;
-		/**
-		 * максимальные ХП
-		 */
-		int hpMax = 1;
-		/**
-		 * текущие ХП
-		 */
-		int hp;
-		/**
-		 * броня
-		 */
-		int armor;
-		/**
-		 * коэффициент снижения урона от брони
-		 */
-		double damageReduction;
+		
 		/**
 		 * вероятность критического удара
 		 */
@@ -431,7 +426,6 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Abstract
 		private void parametersInit()
 		{
 			hp = getHpMax();
-			setDamageReduction();
 		}
 
 		/**
@@ -495,14 +489,6 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Abstract
 		}
 
 		/**
-		 * @param damageReduction the damageReduction to set
-		 */
-		public void setDamageReduction()
-		{
-			this.damageReduction = 1.0 - armor * GameBalanceConstants.armorReductionDamage;
-		}
-
-		/**
 		 * действия при смерти
 		 */
 		private void death()
@@ -532,14 +518,6 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Abstract
 		public int getArmor()
 		{
 			return armor;
-		}
-
-		/**
-		 * @return the damageReduction
-		 */
-		public double getDamageReduction()
-		{
-			return damageReduction;
 		}
 
 		/**

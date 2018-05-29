@@ -41,14 +41,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\Ability.cs" />
+    <Compile Include="Abstract\Animation.cs" />
     <Compile Include="Abstract\Character.cs" />
     <Compile Include="Abstract\Effect.cs" />
     <Compile Include="Effects\Bleed.cs" />
+    <Compile Include="Enums\Pose.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abilities\" />
-    <Folder Include="Enums\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeejayEntertainment.UnarmedDuallingClub.Configuration\DeejayEntertainment.UnarmedDuallingClub.Configuration.csproj">
+      <Project>{ab5780e7-b4a4-4df3-aa76-8919fb7a18fc}</Project>
+      <Name>DeejayEntertainment.UnarmedDuallingClub.Configuration</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
 ﻿using DeejayEntertainment.UnarmedDuallingClub.GameCore.Abstract;
+using DeejayEntertainment.UnarmedDuallingClub.GameCore.Configuration;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Effects
 {
@@ -16,7 +17,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Effects
 
 		protected override void OnTick()
 		{
-			Character.DealMagicalDamage(GameBalanceConstants.baseBleedDamage);
+			Character.DealMagicalDamage(GameBalanceConfigurationManager.Configuration.BaseBleedDamage);
 		}
 	}
 }

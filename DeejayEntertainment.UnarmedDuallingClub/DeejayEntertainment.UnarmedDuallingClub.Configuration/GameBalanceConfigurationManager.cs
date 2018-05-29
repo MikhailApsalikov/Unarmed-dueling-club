@@ -7,13 +7,13 @@ using DeejayEntertainment.UnarmedDuallingClub.Configuration;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Configuration
 {
-	public class GameBalanceConfigurationManager
+	public static class GameBalanceConfigurationManager
 	{
-		public GameBalanceConstants GetConfiguration()
+		public static GameBalanceConstants Configuration { get; } = LoadConfiguration();
+
+		public static GameBalanceConstants LoadConfiguration()
 		{
 			XmlSerializer ser = new XmlSerializer(typeof(GameBalanceConstants));
-			//FileStream file = File.Create(Path.Combine(Environment.CurrentDirectory, "Configuration.xml"));
-			//ser.Serialize(file, new GameBalanceConstants());
 			using (XmlReader reader = XmlReader.Create(Path.Combine(Environment.CurrentDirectory, ConfigurationManager.AppSettings["configuration"])))
 			{
 				return (GameBalanceConstants)ser.Deserialize(reader);
