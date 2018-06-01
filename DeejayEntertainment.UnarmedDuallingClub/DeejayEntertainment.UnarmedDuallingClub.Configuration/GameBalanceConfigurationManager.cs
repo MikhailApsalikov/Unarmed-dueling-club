@@ -3,9 +3,8 @@ using System.Configuration;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
-using DeejayEntertainment.UnarmedDuallingClub.Configuration;
 
-namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Configuration
+namespace DeejayEntertainment.UnarmedDuallingClub.Configuration
 {
 	public static class GameBalanceConfigurationManager
 	{

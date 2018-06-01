@@ -1,7 +1,7 @@
-﻿using DeejayEntertainment.UnarmedDuallingClub.GameCore.Configuration;
+﻿using DeejayEntertainment.UnarmedDuallingClub.Configuration;
 using System;
 
-namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Abstract
+namespace DeejayEntertainment.UnarmedDuallingClub.Combat.Abstract
 {
 	public abstract class Character
 	{

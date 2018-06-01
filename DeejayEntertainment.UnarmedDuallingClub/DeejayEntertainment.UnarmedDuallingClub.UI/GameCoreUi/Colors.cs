@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Abstract
+namespace DeejayEntertainment.UnarmedDuallingClub.UI.GameCoreUi
 {
-	public abstract class Animation
+	public static class Colors
 	{
 	}
 }

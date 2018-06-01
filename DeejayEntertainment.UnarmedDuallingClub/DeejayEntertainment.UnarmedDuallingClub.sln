@@ -11,6 +11,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeejayEntertainment.Unarmed
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeejayEntertainment.UnarmedDuallingClub.Sound", "DeejayEntertainment.UnarmedDuallingClub.Sound\DeejayEntertainment.UnarmedDuallingClub.Sound.csproj", "{D13693F2-9E95-488E-A34D-BBB562CF80F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeejayEntertainment.UnarmedDuallingClub.Combat", "DeejayEntertainment.UnarmedDuallingClub.Combat\DeejayEntertainment.UnarmedDuallingClub.Combat.csproj", "{04608923-C487-43B2-89F8-28B91936FDFF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Combat", "Combat", "{C4D3017E-D6A6-47AD-A3B1-FA3441E1AC19}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{EC7B6C2A-89DE-4854-A52D-737FF4A1A26C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameCore", "GameCore", "{271135AC-CA01-4A55-B0C2-C8FEB52EA4EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts", "DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts\DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts.csproj", "{C6B4297C-CCCB-46D7-86AB-ACEE40E60A81}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{6E56B5DA-B08D-44B9-B100-A71309BB6037}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +45,25 @@ Global
 		{D13693F2-9E95-488E-A34D-BBB562CF80F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D13693F2-9E95-488E-A34D-BBB562CF80F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D13693F2-9E95-488E-A34D-BBB562CF80F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04608923-C487-43B2-89F8-28B91936FDFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04608923-C487-43B2-89F8-28B91936FDFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04608923-C487-43B2-89F8-28B91936FDFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04608923-C487-43B2-89F8-28B91936FDFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6B4297C-CCCB-46D7-86AB-ACEE40E60A81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6B4297C-CCCB-46D7-86AB-ACEE40E60A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6B4297C-CCCB-46D7-86AB-ACEE40E60A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6B4297C-CCCB-46D7-86AB-ACEE40E60A81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B60DB995-A1D5-46F5-99EE-9D99D157A7EF} = {6E56B5DA-B08D-44B9-B100-A71309BB6037}
+		{A4F20E49-F8BA-44D6-A013-CF9C40A80850} = {271135AC-CA01-4A55-B0C2-C8FEB52EA4EF}
+		{AB5780E7-B4A4-4DF3-AA76-8919FB7A18FC} = {EC7B6C2A-89DE-4854-A52D-737FF4A1A26C}
+		{D13693F2-9E95-488E-A34D-BBB562CF80F5} = {EC7B6C2A-89DE-4854-A52D-737FF4A1A26C}
+		{04608923-C487-43B2-89F8-28B91936FDFF} = {C4D3017E-D6A6-47AD-A3B1-FA3441E1AC19}
+		{C6B4297C-CCCB-46D7-86AB-ACEE40E60A81} = {271135AC-CA01-4A55-B0C2-C8FEB52EA4EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {510ACD13-0C1A-4D76-9DC6-588D68576FBE}

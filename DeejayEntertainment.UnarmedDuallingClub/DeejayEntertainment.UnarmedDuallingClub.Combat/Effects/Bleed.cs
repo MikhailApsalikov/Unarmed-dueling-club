@@ -1,7 +1,7 @@
-﻿using DeejayEntertainment.UnarmedDuallingClub.GameCore.Abstract;
-using DeejayEntertainment.UnarmedDuallingClub.GameCore.Configuration;
+﻿using DeejayEntertainment.UnarmedDuallingClub.Combat.Abstract;
+using DeejayEntertainment.UnarmedDuallingClub.Configuration;
 
-namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Effects
+namespace DeejayEntertainment.UnarmedDuallingClub.Combat.Effects
 {
 	public class Bleed : Effect
 	{

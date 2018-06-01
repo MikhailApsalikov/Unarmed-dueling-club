@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -54,6 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Enums\Views.cs" />
+    <Compile Include="GameCoreUi\Colors.cs" />
+    <Compile Include="GameCoreUi\Images.cs" />
+    <Compile Include="Controller\MainController.cs" />
+    <Compile Include="Views\MainMenuView.cs" />
+    <Compile Include="Views\GameViewBase.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,7 +69,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GameCoreUi\FileNames.cs" />
+    <Compile Include="GameCoreUi\PlayerImages.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -95,13 +102,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DeejayEntertainment.UnarmedDuallingClub.Configuration\DeejayEntertainment.UnarmedDuallingClub.Configuration.csproj">
-      <Project>{AB5780E7-B4A4-4DF3-AA76-8919FB7A18FC}</Project>
-      <Name>DeejayEntertainment.UnarmedDuallingClub.Configuration</Name>
+    <ProjectReference Include="..\DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts\DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts.csproj">
+      <Project>{c6b4297c-cccb-46d7-86ab-acee40e60a81}</Project>
+      <Name>DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DeejayEntertainment.UnarmedDuallingClub.Sound\DeejayEntertainment.UnarmedDuallingClub.Sound.csproj">
-      <Project>{D13693F2-9E95-488E-A34D-BBB562CF80F5}</Project>
-      <Name>DeejayEntertainment.UnarmedDuallingClub.Sound</Name>
+    <ProjectReference Include="..\DeejayEntertainment.UnarmedDuallingClub.GameCore\DeejayEntertainment.UnarmedDuallingClub.GameCore.csproj">
+      <Project>{a4f20e49-f8ba-44d6-a013-cf9c40a80850}</Project>
+      <Name>DeejayEntertainment.UnarmedDuallingClub.GameCore</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -1717,5 +1724,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

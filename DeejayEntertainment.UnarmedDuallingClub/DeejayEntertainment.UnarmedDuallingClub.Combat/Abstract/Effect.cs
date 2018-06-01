@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Abstract
+namespace DeejayEntertainment.UnarmedDuallingClub.Combat.Abstract
 {
 	public abstract class Effect
 	{

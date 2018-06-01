@@ -1,9 +1,8 @@
-﻿using System;
+﻿using DeejayEntertainment.UnarmedDuallingClub.UI.Controller;
+using System;
 using System.IO;
-using System.Threading;
 using System.Windows;
-using DeejayEntertainment.UnarmedDuallingClub.GameCore.Configuration;
-using DeejayEntertainment.UnarmedDuallingClub.Sound;
+using System.Windows.Media;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI
 {
@@ -12,17 +11,12 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		private MainController ViewManager;
+
 		public MainWindow()
 		{
 			InitializeComponent();
-			SoundManager sm = new SoundManager(Path.Combine(Environment.CurrentDirectory, "Resources/sounds"),
-				Path.Combine(Environment.CurrentDirectory, "Resources/music"));
-			sm.SetBackgroundMusic(Music.Fight1);
-			Thread.Sleep(3000);
-			sm.PlaySound(Sounds.ShadowForm);
-			sm.PlaySound(Sounds.Cyclone);
-			sm.PlaySound(Sounds.Bleed);
-
+			ViewManager = new MainController(Display);
 		}
 	}
 }
