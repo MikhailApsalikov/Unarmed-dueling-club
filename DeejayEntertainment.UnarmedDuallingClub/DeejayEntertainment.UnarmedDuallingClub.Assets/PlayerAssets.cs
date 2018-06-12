@@ -1,6 +1,6 @@
 ﻿namespace DeejayEntertainment.UnarmedDuallingClub.UI.GameCoreUi
 {
-	public static class PlayerImages
+	public static class PlayerAssets
 	{
 		public const string Icon = "/icon.gif";
 		public const string WinStance = "/winstance.gif";

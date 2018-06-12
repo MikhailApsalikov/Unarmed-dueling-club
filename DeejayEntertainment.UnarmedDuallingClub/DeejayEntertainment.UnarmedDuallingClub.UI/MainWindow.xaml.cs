@@ -1,8 +1,6 @@
 ﻿using DeejayEntertainment.UnarmedDuallingClub.UI.Controller;
 using System;
-using System.IO;
 using System.Windows;
-using System.Windows.Media;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI
 {
@@ -11,12 +9,17 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private MainController ViewManager;
+		private MainController MainController { get; set; }
 
 		public MainWindow()
 		{
 			InitializeComponent();
-			ViewManager = new MainController(Display);
+		}
+
+		protected override void OnContentRendered(EventArgs e)
+		{
+			base.OnContentRendered(e);
+			MainController = new MainController(Display, this);
 		}
 	}
 }

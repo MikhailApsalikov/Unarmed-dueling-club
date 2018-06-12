@@ -1,21 +1,36 @@
-﻿using DeejayEntertainment.UnarmedDuallingClub.UI.Controller;
+﻿using System;
+using DeejayEntertainment.UnarmedDuallingClub.UI.Controller;
 using System.Drawing;
-using System.Windows.Controls;
+using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using DeejayEntertainment.UnarmedDuallingClub.Assets;
+using ImageControl = System.Windows.Controls.Image;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 {
 	public abstract class GameViewBase
 	{
-		protected readonly MainController viewManager;
-		protected readonly DrawingGroup drawingGroup;
+		[DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		public static extern bool DeleteObject([In] IntPtr hObject);
 
+		protected readonly MainController MainController;
+		protected readonly ImageControl image;
+		protected readonly AssetManager assetManager;
+		protected int Width;
+		protected int Height;
 
-		public GameViewBase(MainController viewManager, DrawingGroup drawingGroup)
+		protected GameViewBase(MainController mainController, ImageControl image, AssetManager assetManager)
 		{
-			this.viewManager = viewManager;
-			this.drawingGroup = drawingGroup;
+			this.MainController = mainController;
+			this.image = image;
+			this.assetManager = assetManager;
+			Width = (int)image.ActualWidth;
+			Height = (int)image.ActualHeight;
 			LoadResources();
 		}
 
@@ -29,16 +44,26 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 
 		public void Repaint()
 		{
-			Bitmap bitmap = new Bitmap((int)drawingGroup., (int)drawingGroup.ActualHeight);
+			Bitmap bitmap = new Bitmap(MainController.Width, MainController.Height);
 			Graphics graphics = Graphics.FromImage(bitmap);
 			PaintContent(graphics);
-			canvas.
+			image.Source = ImageSourceForBitmap(bitmap);
 
-				/*Image buffer = new Bitmap(width, height, BufferedImage.TYPE_3BYTE_BGR);
-			Graphics doubleBufferingGraphics = buffer.getGraphics();
-			paintOnBuffer(doubleBufferingGraphics);
-			gr.drawImage(buffer, 0, 0, this);*/
+			/*Image buffer = new Bitmap(width, height, BufferedImage.TYPE_3BYTE_BGR);
+		Graphics doubleBufferingGraphics = buffer.getGraphics();
+		paintOnBuffer(doubleBufferingGraphics);
+		gr.drawImage(buffer, 0, 0, this);*/
 		}
 		protected abstract void PaintContent(Graphics graphics);
+
+		public ImageSource ImageSourceForBitmap(Bitmap bmp)
+		{
+			var handle = bmp.GetHbitmap();
+			try
+			{
+				return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+			}
+			finally { DeleteObject(handle); }
+		}
 	}
 }

@@ -1,16 +1,12 @@
 ﻿using DeejayEntertainment.UnarmedDuallingClub.Sound.Constants;
 using System;
 using System.Media;
-using System.Runtime.InteropServices;
 using System.Windows.Media;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.Sound
 {
 	public class SoundManager : IDisposable
 	{
-		[DllImport("winmm.dll", SetLastError = true)]
-		static extern bool PlaySound(string pszSound, UIntPtr hmod, uint fdwSound);
-
 		private FileNames FileNames { get; }
 
 		public SoundPlayer Player { get; set; }
