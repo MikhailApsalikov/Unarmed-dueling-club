@@ -4,7 +4,7 @@ using DeejayEntertainment.UnarmedDuallingClub.UI.Views;
 using System.Windows.Input;
 using System.Windows.Controls;
 using DeejayEntertainment.UnarmedDuallingClub.Assets;
-
+using DeejayEntertainment.UnarmedDuallingClub.GameCore;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 {
@@ -22,7 +22,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 			Width = (int)window.ActualWidth;
 			Height = (int)window.ActualHeight;
 			assetManager = new AssetManager(Environment.CurrentDirectory);
-			CurrentView = new MainMenuView(this, image, assetManager, null);
+			CurrentView = new MainMenuView(this, image, assetManager, new MainMenu());
 			Repaint();
 		}
 

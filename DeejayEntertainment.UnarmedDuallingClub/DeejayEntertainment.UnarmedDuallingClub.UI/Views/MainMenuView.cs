@@ -15,13 +15,21 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 		private readonly IMainMenu mainMenu;
 		private AssetImage background;
 		private AssetImage udcLabel;
+		private Font menuFont;
+		private Font versionFont;
+		private Brush menuSelectedBrush = Brushes.Green;
+		private Brush menuItemBrush = Brushes.White;
+		private int cellX;
+		private int cellY;
 
-		// add font
-
-		public MainMenuView(MainController controller, ImageControl image, AssetManager assetManager, IMainMenu mainMenu) 
+		public MainMenuView(MainController controller, ImageControl image, AssetManager assetManager, IMainMenu mainMenu)
 			: base(controller, image, assetManager)
 		{
 			this.mainMenu = mainMenu;
+			cellX = Width / 50;
+			cellY = Height / 50;
+			menuFont = new Font("Arial", (int)(cellY * 3.2));
+			versionFont = new Font("Arial", (int)(cellY * 0.6));
 		}
 
 		public override void OnClose()
@@ -51,7 +59,13 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 			attributes.SetWrapMode(System.Drawing.Drawing2D.WrapMode.Tile);
 			graphics.DrawImage(background, new Rectangle(0, 0, Width, Height), 0, 0, background.Width, background.Height,
 				GraphicsUnit.Pixel, attributes);
-			graphics.DrawImage(udcLabel, new Rectangle(Width * 12 / 50, 0, Width * 26 / 50, Height * 26 / 50));
+			graphics.DrawImage(udcLabel, new Rectangle(cellX * 12, 0, cellX * 26, cellY * 26));
+			foreach (var option in mainMenu.Options)
+			{
+				graphics.DrawString(option.Name, menuFont, option.IsSelected ? menuSelectedBrush : menuItemBrush, cellX * 20, (int)(cellY * (25 + 4.5 * option.Id)));
+			}
+			// TODO: change version
+			graphics.DrawString("Version 2.0.0", versionFont, menuItemBrush, 0, cellY * 49);
 		}
 	}
 }

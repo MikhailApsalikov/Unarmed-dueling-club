@@ -29,8 +29,8 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 			this.MainController = mainController;
 			this.image = image;
 			this.assetManager = assetManager;
-			Width = (int)image.ActualWidth;
-			Height = (int)image.ActualHeight;
+			Width = (int)mainController.Width;
+			Height = (int)mainController.Height;
 			LoadResources();
 		}
 

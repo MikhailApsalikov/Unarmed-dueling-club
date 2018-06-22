@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\MenuOptionEntity.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -48,6 +49,10 @@
     <ProjectReference Include="..\DeejayEntertainment.UnarmedDuallingClub.Configuration\DeejayEntertainment.UnarmedDuallingClub.Configuration.csproj">
       <Project>{ab5780e7-b4a4-4df3-aa76-8919fb7a18fc}</Project>
       <Name>DeejayEntertainment.UnarmedDuallingClub.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts\DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts.csproj">
+      <Project>{C6B4297C-CCCB-46D7-86AB-ACEE40E60A81}</Project>
+      <Name>DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

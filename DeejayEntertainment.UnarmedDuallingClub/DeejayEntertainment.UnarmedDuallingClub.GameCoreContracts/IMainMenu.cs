@@ -1,7 +1,12 @@
-﻿namespace DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts
+﻿using DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts.Entities;
+using System.Collections.Generic;
+
+namespace DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts
 {
-	public class IMainMenu
+	public interface IMainMenu
     {
-		public int Selection { get; set; }
+		IEnumerable<MenuOption> Options { get; }
+		void Down();
+		void Up();
 	}
 }
