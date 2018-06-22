@@ -1,6 +1,7 @@
 ﻿namespace DeejayEntertainment.UnarmedDuallingClub.UI.Constants
 {
-	public static class Colors
+	public class Timeouts
 	{
+		public const int ExitTimeOut = 1500;
 	}
 }

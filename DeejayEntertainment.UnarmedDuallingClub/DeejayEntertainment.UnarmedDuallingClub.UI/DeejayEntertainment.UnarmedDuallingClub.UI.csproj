@@ -55,9 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Constants\Timeouts.cs" />
+    <Compile Include="Constants\VersionInfo.cs" />
     <Compile Include="Enums\View.cs" />
-    <Compile Include="Constants\Colors.cs" />
+    <Compile Include="Constants\ColorConstants.cs" />
     <Compile Include="Controller\MainController.cs" />
+    <Compile Include="Views\AboutView.cs" />
     <Compile Include="Views\MainMenuView.cs" />
     <Compile Include="Views\GameViewBase.cs" />
     <Page Include="MainWindow.xaml">

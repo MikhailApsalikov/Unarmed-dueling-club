@@ -7,6 +7,9 @@ using DeejayEntertainment.UnarmedDuallingClub.Assets;
 using DeejayEntertainment.UnarmedDuallingClub.GameCore;
 using DeejayEntertainment.UnarmedDuallingClub.Sound;
 using System.IO;
+using System.Threading.Tasks;
+using System.Threading;
+using DeejayEntertainment.UnarmedDuallingClub.UI.Constants;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 {
@@ -60,6 +63,9 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 				case Enums.View.MainMenu:
 					soundManager.SetBackgroundMusic(Music.MainMenuTheme);
 					break;
+				case Enums.View.About:
+					soundManager.SetBackgroundMusic(Music.AboutMenuTheme);
+					break;
 			}
 		}
 
@@ -70,6 +76,8 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 
 		public void ExitGame()
 		{
+			window.Visibility = Visibility.Hidden;
+			Thread.Sleep(Timeouts.ExitTimeOut);
 			soundManager.Dispose();
 			window.Close();
 		}

@@ -8,6 +8,7 @@ using DeejayEntertainment.UnarmedDuallingClub.UI.Controller;
 using ImageControl = System.Windows.Controls.Image;
 using AssetImage = System.Drawing.Image;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Enums;
+using DeejayEntertainment.UnarmedDuallingClub.UI.Constants;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 {
@@ -18,8 +19,6 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 		private AssetImage udcLabel;
 		private Font menuFont;
 		private Font versionFont;
-		private Brush menuSelectedBrush = Brushes.Green;
-		private Brush menuItemBrush = Brushes.White;
 		private int cellX;
 		private int cellY;
 
@@ -32,7 +31,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 			cellX = Width / 50;
 			cellY = Height / 50;
 			menuFont = new Font("Arial", (int)(cellY * 3.2));
-			versionFont = new Font("Arial", (int)(cellY * 0.6));
+			versionFont = new Font("Arial", (int)(cellY * 0.8));
 		}
 
 		public override void OnClose()
@@ -63,8 +62,11 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 
 		private void Select()
 		{
-			switch (mainMenu.Selection)
+			switch (mainMenu.Select())
 			{
+				case 3:
+					MainController.CurrentView = new AboutView(MainController, image, assetManager, this);
+					break;
 				case 4:
 					MainController.ExitGame();
 					break;
@@ -79,17 +81,13 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 
 		protected override void PaintContent(Graphics graphics)
 		{
-			ImageAttributes attributes = new ImageAttributes();
-			attributes.SetWrapMode(System.Drawing.Drawing2D.WrapMode.Tile);
-			graphics.DrawImage(background, new Rectangle(0, 0, Width, Height), 0, 0, background.Width, background.Height,
-				GraphicsUnit.Pixel, attributes);
-			graphics.DrawImage(udcLabel, new Rectangle(cellX * 12, 0, cellX * 26, cellY * 26));
+			DrawBackground(graphics, background);
+			DrawImage(graphics, udcLabel, cellX * 12, 0, cellX * 26, cellY * 26);
 			foreach (var option in mainMenu.Options)
 			{
-				graphics.DrawString(option.Name, menuFont, option.IsSelected ? menuSelectedBrush : menuItemBrush, cellX * 20, (int)(cellY * (25 + 4.5 * option.Id)));
+				graphics.DrawString(option.Name, menuFont, option.IsSelected ? ColorConstants.MenuSelectedBrush : ColorConstants.MenuItemBrush, cellX * 20, (int)(cellY * (25 + 4.5 * option.Id)));
 			}
-			// TODO: change version
-			graphics.DrawString("Version 2.0.0", versionFont, menuItemBrush, 0, cellY * 49);
+			graphics.DrawString($"Version {VersionInfo.DisplayVersion}", versionFont, ColorConstants.MenuItemBrush, cellX, cellY * 49);
 		}
 	}
 }

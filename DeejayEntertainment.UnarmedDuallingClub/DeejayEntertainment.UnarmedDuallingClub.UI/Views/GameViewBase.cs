@@ -8,8 +8,10 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using DeejayEntertainment.UnarmedDuallingClub.Assets;
-using ImageControl = System.Windows.Controls.Image;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Enums;
+using System.Drawing.Imaging;
+using ImageControl = System.Windows.Controls.Image;
+using AssetImage = System.Drawing.Image;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 {
@@ -47,11 +49,16 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 
 		public void Repaint()
 		{
+			if (this.MainController.CurrentView != this)
+			{
+				return;
+			}
 			Bitmap bitmap = new Bitmap(MainController.Width, MainController.Height);
 			Graphics graphics = Graphics.FromImage(bitmap);
 			PaintContent(graphics);
 			image.Source = ImageSourceForBitmap(bitmap);
 		}
+
 		protected abstract void PaintContent(Graphics graphics);
 
 		public ImageSource ImageSourceForBitmap(Bitmap bmp)
@@ -62,6 +69,24 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 				return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 			}
 			finally { DeleteObject(handle); }
+		}
+
+		protected void DrawBackground(Graphics graphics, AssetImage background)
+		{
+			ImageAttributes attributes = new ImageAttributes();
+			attributes.SetWrapMode(System.Drawing.Drawing2D.WrapMode.Tile);
+			graphics.DrawImage(background, new Rectangle(0, 0, Width, Height), 0, 0, background.Width, background.Height,
+				GraphicsUnit.Pixel, attributes);
+		}
+
+		protected void DrawImage(Graphics graphics, AssetImage asset, double x, double y, double width, double height)
+		{
+			graphics.DrawImage(asset, new Rectangle((int)x, (int)y, (int)width, (int)height));
+		}
+
+		protected void DrawImage(Graphics graphics, AssetImage asset, int x, int y, int width, int height)
+		{
+			graphics.DrawImage(asset, new Rectangle(x, y, width, height));
 		}
 	}
 }

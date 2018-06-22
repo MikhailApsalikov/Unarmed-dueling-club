@@ -32,7 +32,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 			}
 		}
 
-		public int Selection { get; private set; }
+		private int Selection { get; set; }
 
 		public MainMenu(SoundManager soundManager)
 		{
@@ -58,6 +58,12 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 				Selection = options.Count - 1;
 			}
 			soundManager.PlaySound(Sounds.MainMenuChange);
+		}
+
+		public int Select()
+		{
+			soundManager.PlaySound(Sounds.MainMenuSelect);
+			return Selection;
 		}
 
 	}
