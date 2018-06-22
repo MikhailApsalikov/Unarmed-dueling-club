@@ -1,6 +1,6 @@
 ﻿namespace DeejayEntertainment.UnarmedDuallingClub.UI.Enums
 {
-	public enum Views
+	public enum View
 	{
 		MainMenu = 1,
 	}

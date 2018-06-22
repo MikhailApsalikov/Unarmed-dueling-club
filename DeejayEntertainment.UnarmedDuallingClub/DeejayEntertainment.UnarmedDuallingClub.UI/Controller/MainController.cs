@@ -5,6 +5,8 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using DeejayEntertainment.UnarmedDuallingClub.Assets;
 using DeejayEntertainment.UnarmedDuallingClub.GameCore;
+using DeejayEntertainment.UnarmedDuallingClub.Sound;
+using System.IO;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 {
@@ -12,8 +14,10 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 	{
 		private readonly Image image;
 		private readonly AssetManager assetManager;
+		private readonly SoundManager soundManager;
+		private Window window;
 		private GameViewBase currentView;
-		private GameViewBase CurrentView
+		public GameViewBase CurrentView
 		{
 			get
 			{
@@ -25,18 +29,22 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 				currentView = value;
 				currentView.OnOpen();
 				Repaint();
+				PickMusic(currentView);
 			}
 		}
+
 		public int Width { get; }
 		public int Height { get; }
 
 		public MainController(Image image, Window window)
 		{
 			this.image = image;
+			this.window = window;
 			Width = (int)window.ActualWidth;
 			Height = (int)window.ActualHeight;
 			assetManager = new AssetManager(Environment.CurrentDirectory);
-			CurrentView = new MainMenuView(this, image, assetManager, new MainMenu());
+			soundManager = new SoundManager(Path.Combine(Environment.CurrentDirectory, "Resources/sounds"), Path.Combine(Environment.CurrentDirectory, "Resources/music"));
+			CurrentView = new MainMenuView(this, image, assetManager, new MainMenu(soundManager));
 			Repaint();
 		}
 
@@ -45,9 +53,25 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 			CurrentView.Repaint();
 		}
 
+		private void PickMusic(GameViewBase currentView)
+		{
+			switch (currentView.View)
+			{
+				case Enums.View.MainMenu:
+					soundManager.SetBackgroundMusic(Music.MainMenuTheme);
+					break;
+			}
+		}
+
 		public void OnKeyPressed(Key key)
 		{
 			CurrentView.OnKeyPressed(key);
+		}
+
+		public void ExitGame()
+		{
+			soundManager.Dispose();
+			window.Close();
 		}
 	}
 }

@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using DeejayEntertainment.UnarmedDuallingClub.Assets;
 using ImageControl = System.Windows.Controls.Image;
+using DeejayEntertainment.UnarmedDuallingClub.UI.Enums;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 {
@@ -36,6 +37,8 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 
 		protected abstract void LoadResources();
 
+		public abstract View View { get; }
+
 		public abstract void OnClose();
 
 		public abstract void OnKeyPressed(Key key);
@@ -48,11 +51,6 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 			Graphics graphics = Graphics.FromImage(bitmap);
 			PaintContent(graphics);
 			image.Source = ImageSourceForBitmap(bitmap);
-
-			/*Image buffer = new Bitmap(width, height, BufferedImage.TYPE_3BYTE_BGR);
-		Graphics doubleBufferingGraphics = buffer.getGraphics();
-		paintOnBuffer(doubleBufferingGraphics);
-		gr.drawImage(buffer, 0, 0, this);*/
 		}
 		protected abstract void PaintContent(Graphics graphics);
 

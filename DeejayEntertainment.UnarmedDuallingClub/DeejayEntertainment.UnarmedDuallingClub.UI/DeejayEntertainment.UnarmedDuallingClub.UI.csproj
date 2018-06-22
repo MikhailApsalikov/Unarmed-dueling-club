@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Enums\Views.cs" />
+    <Compile Include="Enums\View.cs" />
     <Compile Include="Constants\Colors.cs" />
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="Views\MainMenuView.cs" />
@@ -111,6 +111,10 @@
     <ProjectReference Include="..\DeejayEntertainment.UnarmedDuallingClub.GameCore\DeejayEntertainment.UnarmedDuallingClub.GameCore.csproj">
       <Project>{a4f20e49-f8ba-44d6-a013-cf9c40a80850}</Project>
       <Name>DeejayEntertainment.UnarmedDuallingClub.GameCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeejayEntertainment.UnarmedDuallingClub.Sound\DeejayEntertainment.UnarmedDuallingClub.Sound.csproj">
+      <Project>{D13693F2-9E95-488E-A34D-BBB562CF80F5}</Project>
+      <Name>DeejayEntertainment.UnarmedDuallingClub.Sound</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

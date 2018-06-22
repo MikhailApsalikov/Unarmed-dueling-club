@@ -7,6 +7,7 @@ using DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Controller;
 using ImageControl = System.Windows.Controls.Image;
 using AssetImage = System.Drawing.Image;
+using DeejayEntertainment.UnarmedDuallingClub.UI.Enums;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 {
@@ -21,6 +22,8 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 		private Brush menuItemBrush = Brushes.White;
 		private int cellX;
 		private int cellY;
+
+		public override View View => View.MainMenu;
 
 		public MainMenuView(MainController controller, ImageControl image, AssetManager assetManager, IMainMenu mainMenu)
 			: base(controller, image, assetManager)
@@ -46,6 +49,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 			{
 				case Key.Enter:
 				case Key.Space:
+					Select();
 					break;
 				case Key.Up:
 					mainMenu.Up();
@@ -55,6 +59,16 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 					break;
 			}
 			this.Repaint();
+		}
+
+		private void Select()
+		{
+			switch (mainMenu.Selection)
+			{
+				case 4:
+					MainController.ExitGame();
+					break;
+			}
 		}
 
 		protected override void LoadResources()

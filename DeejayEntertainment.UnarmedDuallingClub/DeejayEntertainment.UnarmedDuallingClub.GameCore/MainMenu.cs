@@ -3,11 +3,13 @@ using System.Linq;
 using DeejayEntertainment.UnarmedDuallingClub.GameCore.Entities;
 using DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts;
 using DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts.Entities;
+using DeejayEntertainment.UnarmedDuallingClub.Sound;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 {
 	public class MainMenu : IMainMenu
 	{
+		private readonly SoundManager soundManager;
 		private List<MenuOptionEntity> options = new List<MenuOptionEntity>()
 		{
 			new MenuOptionEntity(0, "Play"),
@@ -16,7 +18,6 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 			new MenuOptionEntity(3, "About"),
 			new MenuOptionEntity(4, "Exit"),
 		};
-		private int selected;
 
 		public IEnumerable<MenuOption> Options
 		{
@@ -26,32 +27,37 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 				{
 					Id = opt.Id,
 					Name = opt.Name,
-					IsSelected = opt.Id == selected
+					IsSelected = opt.Id == Selection
 				});
 			}
 		}
 
-		public MainMenu()
+		public int Selection { get; private set; }
+
+		public MainMenu(SoundManager soundManager)
 		{
-			selected = options.First().Id;
+			Selection = options.First().Id;
+			this.soundManager = soundManager;
 		}
 
 		public void Down()
 		{
-			selected++;
-			if (selected >= options.Count)
+			Selection++;
+			if (Selection >= options.Count)
 			{
-				selected = 0;
+				Selection = 0;
 			}
+			soundManager.PlaySound(Sounds.MainMenuChange);
 		}
 
 		public void Up()
 		{
-			selected--;
-			if (selected < 0)
+			Selection--;
+			if (Selection < 0)
 			{
-				selected = options.Count - 1;
+				Selection = options.Count - 1;
 			}
+			soundManager.PlaySound(Sounds.MainMenuChange);
 		}
 
 	}
