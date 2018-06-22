@@ -12,7 +12,21 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 	{
 		private readonly Image image;
 		private readonly AssetManager assetManager;
-		private GameViewBase CurrentView { get; set; }
+		private GameViewBase currentView;
+		private GameViewBase CurrentView
+		{
+			get
+			{
+				return currentView;
+			}
+			set
+			{
+				currentView?.OnClose();
+				currentView = value;
+				currentView.OnOpen();
+				Repaint();
+			}
+		}
 		public int Width { get; }
 		public int Height { get; }
 
@@ -29,14 +43,6 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 		public void Repaint()
 		{
 			CurrentView.Repaint();
-		}
-
-		public void ChangeView(GameViewBase view)
-		{
-			CurrentView.OnClose();
-			CurrentView = view;
-			CurrentView.OnOpen();
-			Repaint();
 		}
 
 		public void OnKeyPressed(Key key)

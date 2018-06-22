@@ -34,17 +34,27 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 
 		public override void OnClose()
 		{
-			throw new NotImplementedException();
-		}
-
-		public override void OnKeyPressed(Key key)
-		{
-			throw new NotImplementedException();
 		}
 
 		public override void OnOpen()
 		{
-			throw new NotImplementedException();
+		}
+
+		public override void OnKeyPressed(Key key)
+		{
+			switch (key)
+			{
+				case Key.Enter:
+				case Key.Space:
+					break;
+				case Key.Up:
+					mainMenu.Up();
+					break;
+				case Key.Down:
+					mainMenu.Down();
+					break;
+			}
+			this.Repaint();
 		}
 
 		protected override void LoadResources()

@@ -1,6 +1,7 @@
 ﻿using DeejayEntertainment.UnarmedDuallingClub.UI.Controller;
 using System;
 using System.Windows;
+using System.Windows.Input;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI
 {
@@ -20,6 +21,11 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI
 		{
 			base.OnContentRendered(e);
 			MainController = new MainController(Display, this);
+		}
+
+		protected override void OnKeyDown(KeyEventArgs e)
+		{
+			MainController?.OnKeyPressed(e.Key);
 		}
 	}
 }
