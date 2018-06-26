@@ -1,4 +1,4 @@
-﻿namespace DeejayEntertainment.UnarmedDuallingClub.Combat.Enums
+﻿namespace DeejayEntertainment.UnarmedDuallingClub.Common.Enums
 {
 	public enum Pose
 	{

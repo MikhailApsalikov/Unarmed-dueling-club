@@ -1,6 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Drawing.Imaging;
+﻿using System.Drawing;
 using System.Windows.Input;
 using DeejayEntertainment.UnarmedDuallingClub.Assets;
 using DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts;
@@ -9,6 +7,9 @@ using ImageControl = System.Windows.Controls.Image;
 using AssetImage = System.Drawing.Image;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Enums;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Constants;
+using DeejayEntertainment.UnarmedDuallingClub.Common.Constants;
+using DeejayEntertainment.UnarmedDuallingClub.Sound;
+using DeejayEntertainment.UnarmedDuallingClub.GameCore;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 {
@@ -24,8 +25,8 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 
 		public override View View => View.MainMenu;
 
-		public MainMenuView(MainController controller, ImageControl image, AssetManager assetManager, IMainMenu mainMenu)
-			: base(controller, image, assetManager)
+		public MainMenuView(MainController controller, ImageControl image, AssetManager assetManager, SoundManager soundManager, IMainMenu mainMenu)
+			: base(controller, image, assetManager, soundManager)
 		{
 			this.mainMenu = mainMenu;
 			cellX = Width / 50;
@@ -64,8 +65,24 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 		{
 			switch (mainMenu.Select())
 			{
+				case 2:
+					MainController.CurrentView = new CharacterView(
+						MainController,
+						image,
+						assetManager,
+						this,
+						new CharacterDescriptionMenu(assetManager, soundManager),
+						soundManager
+						);
+					break;
 				case 3:
-					MainController.CurrentView = new AboutView(MainController, image, assetManager, this);
+					MainController.CurrentView = new AboutView(
+						MainController,
+						image,
+						assetManager,
+						soundManager,
+						this
+						);
 					break;
 				case 4:
 					MainController.ExitGame();

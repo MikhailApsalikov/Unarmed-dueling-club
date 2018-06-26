@@ -1,4 +1,4 @@
-﻿namespace DeejayEntertainment.UnarmedDuallingClub.UI.Constants
+﻿namespace DeejayEntertainment.UnarmedDuallingClub.Common.Constants
 {
 	public class VersionInfo
 	{

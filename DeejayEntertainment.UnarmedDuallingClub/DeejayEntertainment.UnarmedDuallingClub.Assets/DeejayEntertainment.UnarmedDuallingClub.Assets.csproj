@@ -46,5 +46,11 @@
     <Compile Include="PlayerAssets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeejayEntertainment.UnarmedDuallingClub.Common\DeejayEntertainment.UnarmedDuallingClub.Common.csproj">
+      <Project>{6BA92956-E1E8-4DF5-A541-91C5AFBEE3E6}</Project>
+      <Name>DeejayEntertainment.UnarmedDuallingClub.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

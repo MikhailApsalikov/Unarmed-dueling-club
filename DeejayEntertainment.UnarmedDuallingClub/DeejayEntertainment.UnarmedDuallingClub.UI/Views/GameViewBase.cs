@@ -12,6 +12,7 @@ using DeejayEntertainment.UnarmedDuallingClub.UI.Enums;
 using System.Drawing.Imaging;
 using ImageControl = System.Windows.Controls.Image;
 using AssetImage = System.Drawing.Image;
+using DeejayEntertainment.UnarmedDuallingClub.Sound;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 {
@@ -24,14 +25,17 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 		protected readonly MainController MainController;
 		protected readonly ImageControl image;
 		protected readonly AssetManager assetManager;
+		protected readonly SoundManager soundManager;
 		protected int Width;
 		protected int Height;
+		protected static object lockObj = new object();
 
-		protected GameViewBase(MainController mainController, ImageControl image, AssetManager assetManager)
+		protected GameViewBase(MainController mainController, ImageControl image, AssetManager assetManager, SoundManager soundManager)
 		{
 			this.MainController = mainController;
 			this.image = image;
 			this.assetManager = assetManager;
+			this.soundManager = soundManager;
 			Width = (int)mainController.Width;
 			Height = (int)mainController.Height;
 			LoadResources();
@@ -55,8 +59,16 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 			}
 			Bitmap bitmap = new Bitmap(MainController.Width, MainController.Height);
 			Graphics graphics = Graphics.FromImage(bitmap);
-			PaintContent(graphics);
-			image.Source = ImageSourceForBitmap(bitmap);
+
+			lock (lockObj)
+			{
+				PaintContent(graphics);
+			}
+
+			image.Dispatcher.Invoke(() =>
+			{
+				image.Source = ImageSourceForBitmap(bitmap);
+			});
 		}
 
 		protected abstract void PaintContent(Graphics graphics);

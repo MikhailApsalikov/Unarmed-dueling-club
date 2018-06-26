@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Input;
 using ImageControl = System.Windows.Controls.Image;
@@ -8,6 +7,8 @@ using DeejayEntertainment.UnarmedDuallingClub.UI.Constants;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Controller;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Enums;
 using DeejayEntertainment.UnarmedDuallingClub.Assets;
+using DeejayEntertainment.UnarmedDuallingClub.Sound;
+using DeejayEntertainment.UnarmedDuallingClub.Common.Constants;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 {
@@ -28,18 +29,16 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 			"(c)Deejay Entertainment. Все права защищены."
 		};
 		private MainMenuView mainMenu;
-		private MainController controller;
 		private int indent;
 		private int indent2;
 		private Font font;
 		private AssetImage background;
 		private AssetImage udcLabel;
 
-		public AboutView(MainController controller, ImageControl image, AssetManager assetManager, MainMenuView mainMenu)
-			: base(controller, image, assetManager)
+		public AboutView(MainController controller, ImageControl image, AssetManager assetManager, SoundManager soundManager, MainMenuView mainMenu)
+			: base(controller, image, assetManager, soundManager)
 		{
 			this.mainMenu = mainMenu;
-			this.controller = controller;
 			font = new Font("Arial", Height / 35);
 			indent = Height / 35;
 			indent2 = indent * 7;
@@ -52,7 +51,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 				case Key.Enter:
 				case Key.Escape:
 				case Key.Space:
-					controller.CurrentView = mainMenu;
+					MainController.CurrentView = mainMenu;
 					break;
 			}
 		}

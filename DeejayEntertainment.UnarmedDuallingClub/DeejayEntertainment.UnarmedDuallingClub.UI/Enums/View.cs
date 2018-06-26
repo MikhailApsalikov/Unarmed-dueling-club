@@ -4,5 +4,6 @@
 	{
 		MainMenu = 1,
 		About = 2,
+		Character = 3,
 	}
 }

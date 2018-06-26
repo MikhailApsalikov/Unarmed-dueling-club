@@ -7,9 +7,8 @@ using DeejayEntertainment.UnarmedDuallingClub.Assets;
 using DeejayEntertainment.UnarmedDuallingClub.GameCore;
 using DeejayEntertainment.UnarmedDuallingClub.Sound;
 using System.IO;
-using System.Threading.Tasks;
 using System.Threading;
-using DeejayEntertainment.UnarmedDuallingClub.UI.Constants;
+using DeejayEntertainment.UnarmedDuallingClub.Common.Constants;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 {
@@ -47,7 +46,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 			Height = (int)window.ActualHeight;
 			assetManager = new AssetManager(Environment.CurrentDirectory);
 			soundManager = new SoundManager(Path.Combine(Environment.CurrentDirectory, "Resources/sounds"), Path.Combine(Environment.CurrentDirectory, "Resources/music"));
-			CurrentView = new MainMenuView(this, image, assetManager, new MainMenu(soundManager));
+			CurrentView = new MainMenuView(this, image, assetManager, soundManager, new MainMenu(soundManager));
 			Repaint();
 		}
 
@@ -64,6 +63,9 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 					soundManager.SetBackgroundMusic(Music.MainMenuTheme);
 					break;
 				case Enums.View.About:
+					soundManager.SetBackgroundMusic(Music.AboutMenuTheme);
+					break;
+				case Enums.View.Character:
 					soundManager.SetBackgroundMusic(Music.AboutMenuTheme);
 					break;
 			}

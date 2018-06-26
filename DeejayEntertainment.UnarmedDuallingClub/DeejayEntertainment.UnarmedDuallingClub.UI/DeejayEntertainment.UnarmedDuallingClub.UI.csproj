@@ -55,12 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Constants\Timeouts.cs" />
-    <Compile Include="Constants\VersionInfo.cs" />
     <Compile Include="Enums\View.cs" />
     <Compile Include="Constants\ColorConstants.cs" />
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="Views\AboutView.cs" />
+    <Compile Include="Views\CharacterView.cs" />
     <Compile Include="Views\MainMenuView.cs" />
     <Compile Include="Views\GameViewBase.cs" />
     <Page Include="MainWindow.xaml">
@@ -106,6 +105,10 @@
     <ProjectReference Include="..\DeejayEntertainment.UnarmedDuallingClub.Assets\DeejayEntertainment.UnarmedDuallingClub.Assets.csproj">
       <Project>{4FBC273D-53F6-4087-9A52-D8A831191B94}</Project>
       <Name>DeejayEntertainment.UnarmedDuallingClub.Assets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeejayEntertainment.UnarmedDuallingClub.Common\DeejayEntertainment.UnarmedDuallingClub.Common.csproj">
+      <Project>{6BA92956-E1E8-4DF5-A541-91C5AFBEE3E6}</Project>
+      <Name>DeejayEntertainment.UnarmedDuallingClub.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts\DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts.csproj">
       <Project>{c6b4297c-cccb-46d7-86ab-acee40e60a81}</Project>
