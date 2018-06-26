@@ -89,14 +89,20 @@
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>4</Id>
+			<Name>PowerfulFury</Name>
+			<DisplayName>Мощнейший удар</DisplayName>
 		  <Cooldown>80</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>5</Id>
+			<Name>StunFury</Name>
+			<DisplayName>Оглушающий удар</DisplayName>
 		  <Cooldown>150</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>6</Id>
+			<Name>Bubble</Name>
+			<DisplayName>Щит Света</DisplayName>
 		  <Cooldown>100</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>

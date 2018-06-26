@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.Configuration
 {
@@ -9,6 +10,16 @@ namespace DeejayEntertainment.UnarmedDuallingClub.Configuration
 		public List<CharacterConstants> CharacterConstantses { get; set; } = new List<CharacterConstants>();
 
 		public List<AbilityConstants> AbilityConstantses { get; set; } = new List<AbilityConstants>();
+
+		public CharacterConstants GetCharacterByName(string name)
+		{
+			return CharacterConstantses.First(c => c.Name == name);
+		}
+
+		public AbilityConstants GetAbilityByName(string name)
+		{
+			return AbilityConstantses.First(c => c.Name == name);
+		}
 
 		/// <summary>
 		/// на сколько снижает физический урон 1 единица брони

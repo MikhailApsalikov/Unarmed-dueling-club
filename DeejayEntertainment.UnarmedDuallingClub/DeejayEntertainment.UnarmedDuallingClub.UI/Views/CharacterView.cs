@@ -28,7 +28,6 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 		private Font titleFont;
 		private int cellX;
 		private int cellY;
-		private bool isSixteenOnNineScreen;
 		private AssetImage background;
 		private Task repaintTask;
 		private CancellationTokenSource tokenSource;
@@ -38,11 +37,10 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 		{
 			this.descriptionMenu = descriptionMenu;
 			this.mainMenu = mainMenu;
-			isSixteenOnNineScreen = (10 * Width >= 16 * Height);
 			cellX = Width / 50;
 			cellY = Height / 50;
 			regularFont = new Font("Arial", (int)(cellY * 1.5));
-			titleFont = new Font("Arial", (int)(cellY * 6), FontStyle.Bold);
+			titleFont = new Font("Arial", (int)(cellY * 4), FontStyle.Bold);
 		}
 
 		public override void OnClose()
@@ -77,7 +75,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 			{
 				while (!tokenSource.IsCancellationRequested)
 				{
-					this.Repaint();
+					MainController.Repaint();
 					Thread.Sleep(Timeouts.RepaintInterval);
 				}
 			}, tokenSource.Token);
@@ -94,16 +92,11 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 			var player = descriptionMenu.CurrentCharacter;
 
 			DrawBackground(graphics, background);
-			DrawImage(graphics, player.Image, cellX * (-2), cellY * 1, cellX * 20, cellY * 24);
-			if (isSixteenOnNineScreen)
-			{
-				DrawImage(graphics, player.Image, cellX * 36, cellY * 25, cellX * 20, cellY * 24); // Invert
-			}
-			graphics.DrawString(player.PlayerName, titleFont, ColorConstants.NormalColorBrush, cellX * 20, cellY * 6);
+			DrawImage(graphics, player.Image, cellX * (-1), cellY * 2, cellX * 18, cellX * 18);
+			graphics.DrawString(player.PlayerName, titleFont, ColorConstants.NormalColorBrush, cellX * 20, cellY * 4);
 			for (int i = 0; i < player.Documentation.Count; i++)
 			{
 				graphics.DrawString(player.Documentation[i], regularFont, ColorConstants.NormalColorBrush, cellX * 15, cellY * 2 * (i + 5));
-				graphics.DrawString(player.Documentation[i], regularFont, ColorConstants.NormalColorBrush, cellX * 2, cellY * 2 * (i + 5));
 			}
 		}
 	}
