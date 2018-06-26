@@ -67,6 +67,10 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 
 			image.Dispatcher.Invoke(() =>
 			{
+				if (this.MainController.CurrentView != this)
+				{
+					return;
+				}
 				image.Source = ImageSourceForBitmap(bitmap);
 			});
 		}
