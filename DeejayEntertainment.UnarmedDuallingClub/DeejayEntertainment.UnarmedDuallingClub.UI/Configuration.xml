@@ -35,7 +35,7 @@
 	  </CharacterConstants>
 	  <CharacterConstants>
 		  <MaxHp>2370</MaxHp>
-		  <Armor>16</Armor>
+		  <Armor>6</Armor>
 		  <CritChance>35</CritChance>
 		  <Name>Burster</Name>
 		  <Id>5</Id>

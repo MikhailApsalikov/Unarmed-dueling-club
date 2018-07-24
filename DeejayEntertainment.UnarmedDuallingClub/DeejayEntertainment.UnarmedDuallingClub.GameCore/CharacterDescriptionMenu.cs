@@ -53,10 +53,41 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 				StatsDescription = CompileStats("Healer", Resources.StatsDescriptions.Mikhail, Resources.StatsDescriptions.Stamina),
 				AbilitiesDescription = CompileHealerAbilities()
 			});
-
+			characters.Add(new CharacterState(assetManager, "Stealther")
+			{
+				CharacterDescription = Resources.CharacterDescriptions.Stealther,
+				StatsDescription = CompileStats("Stealther", Resources.StatsDescriptions.Sergey, Resources.StatsDescriptions.Agility),
+				AbilitiesDescription = null
+			});
+			characters.Add(new CharacterState(assetManager, "Burster")
+			{
+				CharacterDescription = Resources.CharacterDescriptions.Burster,
+				StatsDescription = CompileStats("Burster", Resources.StatsDescriptions.Sergey, Resources.StatsDescriptions.Agility),
+				AbilitiesDescription = null
+			});
+			characters.Add(new CharacterState(assetManager, "Combinator")
+			{
+				CharacterDescription = Resources.CharacterDescriptions.Combinator,
+				StatsDescription = CompileStats("Combinator", Resources.StatsDescriptions.Mikhail, Resources.StatsDescriptions.Agility),
+				AbilitiesDescription = null
+			});
 			characters.Add(new CharacterState(assetManager, "FrostMage")
 			{
-				CharacterDescription = "sadasdsadasd1"
+				CharacterDescription = Resources.CharacterDescriptions.FrostMage,
+				StatsDescription = CompileStats("FrostMage", Resources.StatsDescriptions.Dan, Resources.StatsDescriptions.Intellegence),
+				AbilitiesDescription = null
+			});
+			characters.Add(new CharacterState(assetManager, "FireMage")
+			{
+				CharacterDescription = Resources.CharacterDescriptions.FireMage,
+				StatsDescription = CompileStats("FireMage", Resources.StatsDescriptions.Dan, Resources.StatsDescriptions.Intellegence),
+				AbilitiesDescription = null
+			});
+			characters.Add(new CharacterState(assetManager, "Warlock")
+			{
+				CharacterDescription = Resources.CharacterDescriptions.Warlock,
+				StatsDescription = CompileStats("Warlock", Resources.StatsDescriptions.Dan, Resources.StatsDescriptions.Intellegence),
+				AbilitiesDescription = null
 			});
 		}
 
