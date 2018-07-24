@@ -95,10 +95,14 @@
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>4</Id>
+			<Name>Stealth</Name>
+			<DisplayName>Невидимость</DisplayName>
 		  <Cooldown>80</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>5</Id>
+			<Name>DeathGrip</Name>
+			<DisplayName>Притягивающая веревка</DisplayName>
 		  <Cooldown>150</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
@@ -137,10 +141,14 @@
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>14</Id>
+			<Name>Bleed</Name>
+			<DisplayName>Кровотечение</DisplayName>
 		  <Cooldown>80</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>15</Id>
+			<Name>Enrage</Name>
+			<DisplayName>Ярость</DisplayName>
 		  <Cooldown>300</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
@@ -179,10 +187,14 @@
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>24</Id>
-		  <Cooldown>200</Cooldown>
+			<Name>Blind</Name>
+			<DisplayName>Ослепление</DisplayName>
+		  <Cooldown>120</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>25</Id>
+			<Name>Storm</Name>
+			<DisplayName>Вихрь</DisplayName>
 		  <Cooldown>150</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
@@ -232,15 +244,18 @@
 	<ShadowFormIncomingDamageCoefficient>0.6</ShadowFormIncomingDamageCoefficient>
 	<ShadowFormOutcomingDamageCoefficient>1.4</ShadowFormOutcomingDamageCoefficient>
   <BaseAmblushDamage>325</BaseAmblushDamage>
-  <BaseSapDuration>40</BaseSapDuration>
-  <BaseBleedDamage>21</BaseBleedDamage>
+	<BaseBleedStunDuration>40</BaseBleedStunDuration>
+  <BaseBleedDamage>14</BaseBleedDamage>
+	<BleedPeriod>8</BleedPeriod>
+	<BleedDuration>104</BleedDuration>
   <BaseBlindDuration>40</BaseBlindDuration>
   <BursterCooldownReduction>30</BursterCooldownReduction>
   <BaseEnrageDuration>50</BaseEnrageDuration>
   <BaseEnrageDamageIncrease>80</BaseEnrageDamageIncrease>
-  <BaseStormDuration>30</BaseStormDuration>
-  <BaseStormDamage>40</BaseStormDamage>
-  <StormInterruptChance>0.1</StormInterruptChance>
+  <BaseStormDuration>50</BaseStormDuration>
+  <BaseStormDamage>30</BaseStormDamage>
+	<BaseStormInterval>4</BaseStormInterval>
+  <StormInterruptChance>0.05</StormInterruptChance>
   <BaseStoneDuration>40</BaseStoneDuration>
   <BaseStoneDamage>45</BaseStoneDamage>
   <BaseBloodlustDuration>150</BaseBloodlustDuration>

@@ -172,7 +172,11 @@ namespace DeejayEntertainment.UnarmedDuallingClub.Configuration
 		/// <summary>
 		///  базовая длительность контроля от Ошеломления
 		/// </summary>
-		public int BaseSapDuration { get; set; }
+		public int BaseBleedStunDuration { get; set; }
+
+		public int BleedPeriod { get; set; }
+
+		public int BleedDuration { get; set; }
 
 		/// <summary>
 		///  базовый урон за тик Ошеломления
@@ -203,6 +207,9 @@ namespace DeejayEntertainment.UnarmedDuallingClub.Configuration
 		/// время Вихря
 		/// </summary>
 		public int BaseStormDuration { get; set; }
+
+
+		public int BaseStormInterval { get; set; }
 
 		/// <summary>
 		///  урон от 1 тика вихря

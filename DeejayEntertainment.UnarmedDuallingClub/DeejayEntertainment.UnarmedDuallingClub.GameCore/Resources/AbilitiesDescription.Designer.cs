@@ -70,6 +70,24 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Проводит бесконтактную атаку с расстояния. Оглушает на {0} сек. и наносит {1} магического урона раз в {2} сек. Длительность - {3} сек.
+        /// </summary>
+        internal static string Bleed {
+            get {
+                return ResourceManager.GetString("Bleed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ослепляет врага на {0} сек.
+        /// </summary>
+        internal static string Blind {
+            get {
+                return ResourceManager.GetString("Blind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 4) Пробивание брони(пассивная). После рывка враг не может использовать блок в течение {0} сек..
         /// </summary>
         internal static string BlockBan {
@@ -97,11 +115,29 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Притягивает врага к себе.
+        /// </summary>
+        internal static string DeathGrip {
+            get {
+                return ResourceManager.GetString("DeathGrip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Герой сокрушительно бьет по земле и наносит {0} ед. физического урона, дополнительно оглушая врага на {1} сек. и заставляя молчать на {2} сек.
         /// </summary>
         internal static string EarthStrike {
             get {
                 return ResourceManager.GetString("EarthStrike", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Наполняет свои атаки яростью и наносит на {0}% больше урона. Длительность {1} сек.
+        /// </summary>
+        internal static string Enrage {
+            get {
+                return ResourceManager.GetString("Enrage", resourceCulture);
             }
         }
         
@@ -133,6 +169,15 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 4) Неутомимость(пассивная). Используя рывок, перезарядки всех способностей уменьшаются на {0} сек..
+        /// </summary>
+        internal static string ReduceCdBurster {
+            get {
+                return ResourceManager.GetString("ReduceCdBurster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Отражает летящий в героя предмет. Длительность - {0} сек.
         /// </summary>
         internal static string Reflection {
@@ -156,6 +201,24 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Resources {
         internal static string Smite {
             get {
                 return ResourceManager.GetString("Smite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Скрыться с глаз врага. Действует до отмены.
+        /// </summary>
+        internal static string Stealth {
+            get {
+                return ResourceManager.GetString("Stealth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Раскручивается в вихре и начинает наносить удары по {0} ед. физического урона каждые {1} сек. Длительность {2} сек. Существует небольшая вероятность прерывания вихря.
+        /// </summary>
+        internal static string Storm {
+            get {
+                return ResourceManager.GetString("Storm", resourceCulture);
             }
         }
         

@@ -120,6 +120,12 @@
   <data name="AbilitiesTitle" xml:space="preserve">
     <value>Способности:</value>
   </data>
+  <data name="Bleed" xml:space="preserve">
+    <value>Проводит бесконтактную атаку с расстояния. Оглушает на {0} сек. и наносит {1} магического урона раз в {2} сек. Длительность - {3} сек</value>
+  </data>
+  <data name="Blind" xml:space="preserve">
+    <value>Ослепляет врага на {0} сек</value>
+  </data>
   <data name="BlockBan" xml:space="preserve">
     <value>4) Пробивание брони(пассивная). После рывка враг не может использовать блок в течение {0} сек.</value>
   </data>
@@ -129,8 +135,14 @@
   <data name="Cyclone" xml:space="preserve">
     <value>Силы природы подхватывают противника и делают его неуязвимым на {0} сек. Противник не может ничего сделать, пока действует циклон</value>
   </data>
+  <data name="DeathGrip" xml:space="preserve">
+    <value>Притягивает врага к себе</value>
+  </data>
   <data name="EarthStrike" xml:space="preserve">
     <value>Герой сокрушительно бьет по земле и наносит {0} ед. физического урона, дополнительно оглушая врага на {1} сек. и заставляя молчать на {2} сек</value>
+  </data>
+  <data name="Enrage" xml:space="preserve">
+    <value>Наполняет свои атаки яростью и наносит на {0}% больше урона. Длительность {1} сек</value>
   </data>
   <data name="Heal" xml:space="preserve">
     <value>Исцеляет {0} - {1} ед. здоровья. Перезарядка сбрасывается, если противник в циклоне</value>
@@ -141,6 +153,9 @@
   <data name="RageAura" xml:space="preserve">
     <value>5) Яростная аура(пассивная). Все лечение, используемое на поле боя с героем уменьшается на 80%.</value>
   </data>
+  <data name="ReduceCdBurster" xml:space="preserve">
+    <value>4) Неутомимость(пассивная). Используя рывок, перезарядки всех способностей уменьшаются на {0} сек.</value>
+  </data>
   <data name="Reflection" xml:space="preserve">
     <value>Отражает летящий в героя предмет. Длительность - {0} сек</value>
   </data>
@@ -149,6 +164,12 @@
   </data>
   <data name="Smite" xml:space="preserve">
     <value>4) Кара(пассивная). Отражает {0}% любого нанесенного урона. Растворенные в тени противники не получают урона. Растворяет вражеского лекаря в тени.</value>
+  </data>
+  <data name="Stealth" xml:space="preserve">
+    <value>Скрыться с глаз врага. Действует до отмены</value>
+  </data>
+  <data name="Storm" xml:space="preserve">
+    <value>Раскручивается в вихре и начинает наносить удары по {0} ед. физического урона каждые {1} сек. Длительность {2} сек. Существует небольшая вероятность прерывания вихря</value>
   </data>
   <data name="StunFury" xml:space="preserve">
     <value>Атака, оглушающая противника на {0} сек. и наносящая {1} ед. физического урона</value>

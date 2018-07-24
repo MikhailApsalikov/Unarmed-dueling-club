@@ -57,13 +57,13 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 			{
 				CharacterDescription = Resources.CharacterDescriptions.Stealther,
 				StatsDescription = CompileStats("Stealther", Resources.StatsDescriptions.Sergey, Resources.StatsDescriptions.Agility),
-				AbilitiesDescription = null
+				AbilitiesDescription = CompileStealtherAbilities()
 			});
 			characters.Add(new CharacterState(assetManager, "Burster")
 			{
 				CharacterDescription = Resources.CharacterDescriptions.Burster,
 				StatsDescription = CompileStats("Burster", Resources.StatsDescriptions.Sergey, Resources.StatsDescriptions.Agility),
-				AbilitiesDescription = null
+				AbilitiesDescription = CompileBursterAbilities()
 			});
 			characters.Add(new CharacterState(assetManager, "Combinator")
 			{
@@ -160,6 +160,32 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 			sb.AppendFormat(Resources.AbilitiesDescription.Template, 3, gameBalanceConstants.GetAbilityByName("ShadowForm").DisplayName, string.Format(Resources.AbilitiesDescription.ShadowForm, Math.Round((gameBalanceConstants.ShadowFormOutcomingDamageCoefficient - 1) * 100), Math.Round((1 - gameBalanceConstants.ShadowFormIncomingDamageCoefficient) * 100)), gameBalanceConstants.GetAbilityByName("ShadowForm").Cooldown / 10.0);
 			sb.AppendLine();
 			sb.AppendFormat(Resources.AbilitiesDescription.Smite, gameBalanceConstants.SmiteDamageCoefficient * 100);
+			return sb.ToString();
+		}
+
+		private string CompileStealtherAbilities()
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine(Resources.AbilitiesDescription.AbilitiesTitle);
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 1, gameBalanceConstants.GetAbilityByName("Stealth").DisplayName, string.Format(Resources.AbilitiesDescription.Stealth), gameBalanceConstants.GetAbilityByName("Stealth").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 2, gameBalanceConstants.GetAbilityByName("Bleed").DisplayName, string.Format(Resources.AbilitiesDescription.Bleed, gameBalanceConstants.BaseBleedStunDuration / 10.0, gameBalanceConstants.BaseBleedDamage, gameBalanceConstants.BleedPeriod / 10.0, gameBalanceConstants.BleedDuration / 10.0), gameBalanceConstants.GetAbilityByName("Bleed").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 3, gameBalanceConstants.GetAbilityByName("Blind").DisplayName, string.Format(Resources.AbilitiesDescription.Blind, gameBalanceConstants.BaseBlindDuration / 10.0), gameBalanceConstants.GetAbilityByName("Blind").Cooldown / 10.0);
+			return sb.ToString();
+		}
+
+		private string CompileBursterAbilities()
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine(Resources.AbilitiesDescription.AbilitiesTitle);
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 1, gameBalanceConstants.GetAbilityByName("DeathGrip").DisplayName, string.Format(Resources.AbilitiesDescription.DeathGrip), gameBalanceConstants.GetAbilityByName("DeathGrip").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 2, gameBalanceConstants.GetAbilityByName("Enrage").DisplayName, string.Format(Resources.AbilitiesDescription.Enrage, gameBalanceConstants.BaseEnrageDamageIncrease, gameBalanceConstants.BaseEnrageDuration / 10.0), gameBalanceConstants.GetAbilityByName("Enrage").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 3, gameBalanceConstants.GetAbilityByName("Storm").DisplayName, string.Format(Resources.AbilitiesDescription.Storm, gameBalanceConstants.BaseStormDamage, gameBalanceConstants.BaseStormInterval / 10.0, gameBalanceConstants.BaseStormDuration / 10.0), gameBalanceConstants.GetAbilityByName("Storm").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.ReduceCdBurster, gameBalanceConstants.BursterCooldownReduction / 10.0);
 			return sb.ToString();
 		}
 	}
