@@ -25,12 +25,15 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 		private MainMenuView mainMenu;
 
 		private Font regularFont;
+		private Font descriptionFont;
 		private Font titleFont;
 		private int cellX;
 		private int cellY;
 		private AssetImage background;
 		private Task repaintTask;
 		private CancellationTokenSource tokenSource;
+		private StringFormat stringFormatNormal;
+		private StringFormat stringFormatCenter;
 
 		public CharacterView(MainController controller, ImageControl image, AssetManager assetManager, MainMenuView mainMenu, ICharacterDescriptionMenu descriptionMenu, SoundManager soundManager)
 			: base(controller, image, assetManager, soundManager)
@@ -39,8 +42,17 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 			this.mainMenu = mainMenu;
 			cellX = Width / 50;
 			cellY = Height / 50;
-			regularFont = new Font("Arial", (int)(cellY * 1.5));
+			regularFont = new Font("Arial", (int)(cellY * 1.4));
+			descriptionFont = new Font("Arial", (int)(cellY * 1.2));
 			titleFont = new Font("Arial", (int)(cellY * 4), FontStyle.Bold);
+			stringFormatCenter = new StringFormat()
+			{
+				Alignment = StringAlignment.Center
+			};
+			stringFormatNormal = new StringFormat()
+			{
+				Alignment = StringAlignment.Near
+			};
 		}
 
 		public override void OnClose()
@@ -92,12 +104,11 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 			var player = descriptionMenu.CurrentCharacter;
 
 			DrawBackground(graphics, background);
-			DrawImage(graphics, player.Image, cellX * (-1), cellY * 2, cellX * 18, cellX * 18);
-			graphics.DrawString(player.PlayerName, titleFont, ColorConstants.NormalColorBrush, cellX * 20, cellY * 4);
-			for (int i = 0; i < player.Documentation.Count; i++)
-			{
-				graphics.DrawString(player.Documentation[i], regularFont, ColorConstants.NormalColorBrush, cellX * 15, cellY * 2 * (i + 5));
-			}
+			DrawImage(graphics, player.Image, cellX * (-1), cellY * 2, cellX * 15, cellX * 15);
+			graphics.DrawString(player.PlayerName, titleFont, ColorConstants.NormalColorBrush, new RectangleF(cellX * 12, cellY * 2, Width - cellX * 12, cellY * 6), stringFormatCenter);
+			graphics.DrawString(player.CharacterDescription, descriptionFont, ColorConstants.NormalColorBrush, new RectangleF(cellX * 12, cellY * 8, Width - cellX * 12, Height - cellY * 8), stringFormatCenter);
+			graphics.DrawString(player.StatsDescription, regularFont, ColorConstants.NormalColorBrush, new RectangleF(cellX * 12, cellY * 19, Width - cellX * 12, Height - cellY * 19), stringFormatNormal);
+			graphics.DrawString(player.AbilitiesDescription, regularFont, ColorConstants.NormalColorBrush, new RectangleF(cellX * 2, cellY * 30, Width - cellX * 2, Height - cellY * 30), stringFormatNormal);
 		}
 	}
 }

@@ -57,6 +57,12 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 				case Key.Down:
 					mainMenu.Down();
 					break;
+				case Key.Escape:
+					{
+						soundManager.PlaySound(Sounds.MainMenuSelect);
+						MainController.ExitGame();
+						break;
+					}
 			}
 			this.Repaint();
 		}

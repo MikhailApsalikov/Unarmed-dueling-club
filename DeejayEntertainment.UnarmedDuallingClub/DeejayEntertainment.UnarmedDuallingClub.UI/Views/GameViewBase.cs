@@ -84,7 +84,10 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 			{
 				return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 			}
-			finally { DeleteObject(handle); }
+			finally
+			{
+				DeleteObject(handle);
+			}
 		}
 
 		protected void DrawBackground(Graphics graphics, AssetImage background)

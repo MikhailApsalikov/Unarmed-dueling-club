@@ -6,7 +6,9 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts.Interfaces
 	public interface ICharacterState
 	{
 		AssetImage Image { get; }
-		List<string> Documentation { get; }
+		string CharacterDescription { get; }
+		string StatsDescription { get; }
+		string AbilitiesDescription { get; }
 		string PlayerName { get; }
 	}
 }

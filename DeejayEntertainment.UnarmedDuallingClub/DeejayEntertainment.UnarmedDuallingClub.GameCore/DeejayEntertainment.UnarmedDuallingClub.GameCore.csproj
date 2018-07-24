@@ -46,8 +46,36 @@
     <Compile Include="Entities\MenuOptionEntity.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\AbilitiesDescription.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AbilitiesDescription.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\CharacterDescriptions.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CharacterDescriptions.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StatsDescriptions.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StatsDescriptions.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\AbilitiesDescription.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AbilitiesDescription.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CharacterDescriptions.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CharacterDescriptions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StatsDescriptions.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StatsDescriptions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DeejayEntertainment.UnarmedDuallingClub.Assets\DeejayEntertainment.UnarmedDuallingClub.Assets.csproj">
       <Project>{4FBC273D-53F6-4087-9A52-D8A831191B94}</Project>

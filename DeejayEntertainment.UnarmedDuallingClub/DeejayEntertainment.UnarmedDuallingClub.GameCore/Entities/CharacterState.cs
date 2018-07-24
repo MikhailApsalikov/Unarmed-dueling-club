@@ -46,7 +46,8 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Entities
 			return assetManager.GetPlayerAnimation(PlayerName, pose);
 		}
 
-		public Image Image {
+		public Image Image
+		{
 			get
 			{
 				int frameNumber = ((int)DateTime.Now.Subtract(setTime).TotalMilliseconds / AnimationSpeed) % animationFramesCount;
@@ -54,6 +55,8 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Entities
 			}
 		}
 
-		public List<string> Documentation { get; set; }
+		public string CharacterDescription { get; set; }
+		public string StatsDescription { get; set; }
+		public string AbilitiesDescription { get; set; }
 	}
 }

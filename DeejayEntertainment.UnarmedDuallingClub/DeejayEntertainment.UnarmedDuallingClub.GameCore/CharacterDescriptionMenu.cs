@@ -4,8 +4,10 @@ using DeejayEntertainment.UnarmedDuallingClub.GameCore.Entities;
 using DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts;
 using DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts.Interfaces;
 using DeejayEntertainment.UnarmedDuallingClub.Sound;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 {
@@ -35,39 +37,14 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 			characters = new List<ICharacterState>();
 			characters.Add(new CharacterState(assetManager, "Fury")
 			{
-				Documentation = new List<string>()
-				{
-					"Вы видите перед собой храброго воина, который своим ви-",
-					"дом вселяет страх в своих врагов. После того, как он прибли-",
-					"жается к врагу, тот забывает как блокировать атаки. Воин спо-",
-					"собен собирать всю свою силу и ярость, чтобы нанести сокру-",
-					"шительный удар по врагу, либо оглушить его. В минуту опасно-",
-					"сти он обращается к силам Света и защищает себя непробива-",
-					"емым щитом.",
-					"",
-					"Модель персонажа - Милёхин Дмитрий Основная характеристка - Выносливость",
-					$"Максимальное здоровье - {gameBalanceConstants.GetCharacterByName("Fury").MaxHp} Броня - {gameBalanceConstants.GetCharacterByName("Fury").Armor}",
-					$"Вероятность критического удара - {gameBalanceConstants.GetCharacterByName("Fury").CritChance}%",
-					"Способности:",
-					$"1) {gameBalanceConstants.GetAbilityByName("PowerfulFury").DisplayName}. Собирает всю свою ярость и наносит врагу {gameBalanceConstants.PowerfulFuryBaseDamage}  ед. физического",
-					$" урона. Перезарядка {gameBalanceConstants.GetAbilityByName("PowerfulFury").Cooldown / 10.0}  сек.",
-					$"2) {gameBalanceConstants.GetAbilityByName("StunFury").DisplayName}. Атака, оглушающая противника на {gameBalanceConstants.FuryStunDuration / 10.0} сек. и наносящая {gameBalanceConstants.FuryStunBaseDamage} ед. ",
-					$" физического урона. Перезарядка {gameBalanceConstants.GetAbilityByName("StunFury").Cooldown / 10.0}  сек.",
-					$"3) {gameBalanceConstants.GetAbilityByName("Bubble").DisplayName}. Герой получает неуязвимость на {gameBalanceConstants.BubbleDuration / 10.0} сек. Перезарядка {gameBalanceConstants.GetAbilityByName("Bubble").Cooldown / 10.0}  сек.",
-					"4) Пробивание брони(пассивная). После рывка враг не может использовать блок в",
-					$" течение {gameBalanceConstants.BlockBanDuration / 10.0} сек.",
-					"5) Яростная аура(пассивная). Все лечение, используемое на поле боя с героем умень-",
-					"шается на 80%"
-				}
+				CharacterDescription = Resources.CharacterDescriptions.Fury,
+				StatsDescription = CompileStats("Fury", Resources.StatsDescriptions.Dmitry, Resources.StatsDescriptions.Stamina),
+				AbilitiesDescription = CompileFuryAbilities()
 			});
 
 			characters.Add(new CharacterState(assetManager, "FrostMage")
 			{
-				Documentation = new List<string>()
-				{
-					"sadasdsadasd1",
-					"dsadasdasdasd2"
-				}
+				CharacterDescription = "sadasdsadasd1"
 			});
 		}
 
@@ -89,6 +66,32 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 				Selection = characters.Count - 1;
 			}
 			soundManager.PlaySound(Sounds.MainMenuChange);
+		}
+
+		private string CompileStats(string name, string model, string mainStat)
+		{
+			return string.Format(Resources.StatsDescriptions.Template,
+				model,
+				mainStat,
+				gameBalanceConstants.GetCharacterByName(name).MaxHp,
+				gameBalanceConstants.GetCharacterByName(name).Armor,
+				gameBalanceConstants.GetCharacterByName(name).CritChance);
+		}
+
+		private string CompileFuryAbilities()
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine(Resources.AbilitiesDescription.AbilitiesTitle);
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 1, gameBalanceConstants.GetAbilityByName("PowerfulFury").DisplayName, string.Format(Resources.AbilitiesDescription.PowerfulFury, gameBalanceConstants.PowerfulFuryBaseDamage), gameBalanceConstants.GetAbilityByName("PowerfulFury").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 2, gameBalanceConstants.GetAbilityByName("StunFury").DisplayName, string.Format(Resources.AbilitiesDescription.StunFury, gameBalanceConstants.FuryStunDuration / 10.0, gameBalanceConstants.FuryStunBaseDamage), gameBalanceConstants.GetAbilityByName("StunFury").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 3, gameBalanceConstants.GetAbilityByName("Bubble").DisplayName, string.Format(Resources.AbilitiesDescription.Bubble, gameBalanceConstants.BubbleDuration / 10.0), gameBalanceConstants.GetAbilityByName("Bubble").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.BlockBan, gameBalanceConstants.BlockBanDuration / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.RageAura);
+			return sb.ToString();
 		}
 	}
 }
