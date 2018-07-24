@@ -35,11 +35,23 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 		private void InitCharacterList(AssetManager assetManager)
 		{
 			characters = new List<ICharacterState>();
+			characters.Add(new CharacterState(assetManager, "Tank")
+			{
+				CharacterDescription = Resources.CharacterDescriptions.Tank,
+				StatsDescription = CompileStats("Tank", Resources.StatsDescriptions.Dmitry, Resources.StatsDescriptions.Stamina),
+				AbilitiesDescription = CompileTankAbilities()
+			});
 			characters.Add(new CharacterState(assetManager, "Fury")
 			{
 				CharacterDescription = Resources.CharacterDescriptions.Fury,
 				StatsDescription = CompileStats("Fury", Resources.StatsDescriptions.Dmitry, Resources.StatsDescriptions.Stamina),
 				AbilitiesDescription = CompileFuryAbilities()
+			});
+			characters.Add(new CharacterState(assetManager, "Healer")
+			{
+				CharacterDescription = Resources.CharacterDescriptions.Healer,
+				StatsDescription = CompileStats("Healer", Resources.StatsDescriptions.Mikhail, Resources.StatsDescriptions.Stamina),
+				AbilitiesDescription = CompileHealerAbilities()
 			});
 
 			characters.Add(new CharacterState(assetManager, "FrostMage")
@@ -78,6 +90,18 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 				gameBalanceConstants.GetCharacterByName(name).CritChance);
 		}
 
+		private string CompileTankAbilities()
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine(Resources.AbilitiesDescription.AbilitiesTitle);
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 1, gameBalanceConstants.GetAbilityByName("TankStrike").DisplayName, string.Format(Resources.AbilitiesDescription.TankStrike, gameBalanceConstants.TankStrikeBaseDamage), gameBalanceConstants.GetAbilityByName("TankStrike").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 2, gameBalanceConstants.GetAbilityByName("EarthStrike").DisplayName, string.Format(Resources.AbilitiesDescription.EarthStrike, gameBalanceConstants.EarthStrikeBaseDamage, gameBalanceConstants.EarthStrikeStunDuration / 10.0, gameBalanceConstants.EarthStrikeSilenceDuration / 10.0), gameBalanceConstants.GetAbilityByName("EarthStrike").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 3, gameBalanceConstants.GetAbilityByName("Reflection").DisplayName, string.Format(Resources.AbilitiesDescription.Reflection, gameBalanceConstants.ReflectBaseDuration / 10.0), gameBalanceConstants.GetAbilityByName("Reflection").Cooldown / 10.0);
+			return sb.ToString();
+		}
+
 		private string CompileFuryAbilities()
 		{
 			StringBuilder sb = new StringBuilder();
@@ -91,6 +115,20 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 			sb.AppendFormat(Resources.AbilitiesDescription.BlockBan, gameBalanceConstants.BlockBanDuration / 10.0);
 			sb.AppendLine();
 			sb.AppendFormat(Resources.AbilitiesDescription.RageAura);
+			return sb.ToString();
+		}
+
+		private string CompileHealerAbilities()
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine(Resources.AbilitiesDescription.AbilitiesTitle);
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 1, gameBalanceConstants.GetAbilityByName("Heal").DisplayName, string.Format(Resources.AbilitiesDescription.Heal, gameBalanceConstants.HealMinimum, gameBalanceConstants.HealMaximum), gameBalanceConstants.GetAbilityByName("Heal").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 2, gameBalanceConstants.GetAbilityByName("Cyclone").DisplayName, string.Format(Resources.AbilitiesDescription.Cyclone, gameBalanceConstants.CycloneDuration / 10.0), gameBalanceConstants.GetAbilityByName("Cyclone").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 3, gameBalanceConstants.GetAbilityByName("ShadowForm").DisplayName, string.Format(Resources.AbilitiesDescription.ShadowForm, Math.Round((gameBalanceConstants.ShadowFormOutcomingDamageCoefficient - 1) * 100), Math.Round((1 - gameBalanceConstants.ShadowFormIncomingDamageCoefficient) * 100)), gameBalanceConstants.GetAbilityByName("ShadowForm").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Smite, gameBalanceConstants.SmiteDamageCoefficient * 100);
 			return sb.ToString();
 		}
 	}

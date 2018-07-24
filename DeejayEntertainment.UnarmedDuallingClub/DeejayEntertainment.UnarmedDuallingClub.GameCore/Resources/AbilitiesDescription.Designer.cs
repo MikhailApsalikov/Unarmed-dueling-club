@@ -88,6 +88,33 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Силы природы подхватывают противника и делают его неуязвимым на {0} сек. Противник не может ничего сделать, пока действует циклон.
+        /// </summary>
+        internal static string Cyclone {
+            get {
+                return ResourceManager.GetString("Cyclone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Герой сокрушительно бьет по земле и наносит {0} ед. физического урона, дополнительно оглушая врага на {1} сек. и заставляя молчать на {2} сек.
+        /// </summary>
+        internal static string EarthStrike {
+            get {
+                return ResourceManager.GetString("EarthStrike", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Исцеляет {0} - {1} ед. здоровья. Перезарядка сбрасывается, если противник в циклоне.
+        /// </summary>
+        internal static string Heal {
+            get {
+                return ResourceManager.GetString("Heal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Собирает всю свою ярость и наносит врагу {0} ед. физического урона.
         /// </summary>
         internal static string PowerfulFury {
@@ -106,11 +133,47 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отражает летящий в героя предмет. Длительность - {0} сек.
+        /// </summary>
+        internal static string Reflection {
+            get {
+                return ResourceManager.GetString("Reflection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Растворяется в тени, наносит на {0}% больше урона, получает на {1}% меньше урона и не может использовать заклинания исцеления.
+        /// </summary>
+        internal static string ShadowForm {
+            get {
+                return ResourceManager.GetString("ShadowForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4) Кара(пассивная). Отражает {0}% любого нанесенного урона. Растворенные в тени противники не получают урона. Растворяет вражеского лекаря в тени..
+        /// </summary>
+        internal static string Smite {
+            get {
+                return ResourceManager.GetString("Smite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Атака, оглушающая противника на {0} сек. и наносящая {1} ед. физического урона.
         /// </summary>
         internal static string StunFury {
             get {
                 return ResourceManager.GetString("StunFury", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Наносит врагу {0} ед. физического урона. Дает провести дальнейшую комбинацию. Пробивает блок.
+        /// </summary>
+        internal static string TankStrike {
+            get {
+                return ResourceManager.GetString("TankStrike", resourceCulture);
             }
         }
         

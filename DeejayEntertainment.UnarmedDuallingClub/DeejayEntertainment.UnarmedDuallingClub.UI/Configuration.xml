@@ -77,6 +77,8 @@
   <AbilityConstantses>
     <AbilityConstants>
       <Id>1</Id>
+			<Name>TankStrike</Name>
+			<DisplayName>Удар Танка</DisplayName>
       <Cooldown>100</Cooldown>
     </AbilityConstants>
 	  <AbilityConstants>
@@ -87,6 +89,8 @@
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>3</Id>
+			<Name>Heal</Name>
+			<DisplayName>Лечение</DisplayName>
 		  <Cooldown>120</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
@@ -115,6 +119,8 @@
 	  </AbilityConstants>
 		<AbilityConstants>
 		  <Id>11</Id>
+			<Name>EarthStrike</Name>
+			<DisplayName>Удар по земле</DisplayName>
 		  <Cooldown>50</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
@@ -125,6 +131,8 @@
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>13</Id>
+			<Name>Cyclone</Name>
+			<DisplayName>Циклон</DisplayName>
 		  <Cooldown>300</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
@@ -153,6 +161,8 @@
 	  </AbilityConstants>
 		<AbilityConstants>
 		  <Id>21</Id>
+			<Name>Reflection</Name>
+			<DisplayName>Отражение</DisplayName>
 		  <Cooldown>80</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
@@ -163,6 +173,8 @@
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>23</Id>
+			<Name>ShadowForm</Name>
+			<DisplayName>Растворение в тени</DisplayName>
 		  <Cooldown>150</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
@@ -213,11 +225,12 @@
   <FuryStunBaseDamage>40</FuryStunBaseDamage>
   <BubbleDuration>60</BubbleDuration>
   <BlockBanDuration>40</BlockBanDuration>
-  <BaseHeal>50</BaseHeal>
-  <AdditionalHear>250</AdditionalHear>
+	<HealMinimum>150</HealMinimum>
+	<HealMaximum>300</HealMaximum>
   <CycloneDuration>40</CycloneDuration>
   <ChargeHealerDamage>75</ChargeHealerDamage>
-  <ShadowFormDamageCoefficient>0.6</ShadowFormDamageCoefficient>
+	<ShadowFormIncomingDamageCoefficient>0.6</ShadowFormIncomingDamageCoefficient>
+	<ShadowFormOutcomingDamageCoefficient>1.4</ShadowFormOutcomingDamageCoefficient>
   <BaseAmblushDamage>325</BaseAmblushDamage>
   <BaseSapDuration>40</BaseSapDuration>
   <BaseBleedDamage>21</BaseBleedDamage>
@@ -251,5 +264,6 @@
   <CurseHighDuration>210</CurseHighDuration>
   <CurseHighDamage>19</CurseHighDamage>
   <ShadowBlindDuration>30</ShadowBlindDuration>
+	<SmiteDamageCoefficient>0.15</SmiteDamageCoefficient>
   <GlobalCooldown>15</GlobalCooldown>
 </GameBalanceConstants>

@@ -126,14 +126,35 @@
   <data name="Bubble" xml:space="preserve">
     <value>Герой получает неуязвимость на {0} сек</value>
   </data>
+  <data name="Cyclone" xml:space="preserve">
+    <value>Силы природы подхватывают противника и делают его неуязвимым на {0} сек. Противник не может ничего сделать, пока действует циклон</value>
+  </data>
+  <data name="EarthStrike" xml:space="preserve">
+    <value>Герой сокрушительно бьет по земле и наносит {0} ед. физического урона, дополнительно оглушая врага на {1} сек. и заставляя молчать на {2} сек</value>
+  </data>
+  <data name="Heal" xml:space="preserve">
+    <value>Исцеляет {0} - {1} ед. здоровья. Перезарядка сбрасывается, если противник в циклоне</value>
+  </data>
   <data name="PowerfulFury" xml:space="preserve">
     <value>Собирает всю свою ярость и наносит врагу {0} ед. физического урона</value>
   </data>
   <data name="RageAura" xml:space="preserve">
     <value>5) Яростная аура(пассивная). Все лечение, используемое на поле боя с героем уменьшается на 80%.</value>
   </data>
+  <data name="Reflection" xml:space="preserve">
+    <value>Отражает летящий в героя предмет. Длительность - {0} сек</value>
+  </data>
+  <data name="ShadowForm" xml:space="preserve">
+    <value>Растворяется в тени, наносит на {0}% больше урона, получает на {1}% меньше урона и не может использовать заклинания исцеления</value>
+  </data>
+  <data name="Smite" xml:space="preserve">
+    <value>4) Кара(пассивная). Отражает {0}% любого нанесенного урона. Растворенные в тени противники не получают урона. Растворяет вражеского лекаря в тени.</value>
+  </data>
   <data name="StunFury" xml:space="preserve">
     <value>Атака, оглушающая противника на {0} сек. и наносящая {1} ед. физического урона</value>
+  </data>
+  <data name="TankStrike" xml:space="preserve">
+    <value>Наносит врагу {0} ед. физического урона. Дает провести дальнейшую комбинацию. Пробивает блок</value>
   </data>
   <data name="Template" xml:space="preserve">
     <value>{0}) {1}. {2}. Перезарядка {3} сек.</value>

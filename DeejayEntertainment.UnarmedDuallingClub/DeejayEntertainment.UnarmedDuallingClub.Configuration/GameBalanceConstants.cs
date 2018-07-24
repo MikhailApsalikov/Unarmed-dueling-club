@@ -139,12 +139,12 @@ namespace DeejayEntertainment.UnarmedDuallingClub.Configuration
 		/// <summary>
 		/// базовое лечение
 		/// </summary>
-		public int BaseHeal { get; set; }
+		public int HealMinimum { get; set; }
 
 		/// <summary>
 		/// дополнительное (максимум) лечение
 		/// </summary>
-		public int AdditionalHear { get; set; }
+		public int HealMaximum { get; set; }
 
 		/// <summary>
 		/// время циклона
@@ -159,7 +159,10 @@ namespace DeejayEntertainment.UnarmedDuallingClub.Configuration
 		/// <summary>
 		/// снижение урона от шадоуформы до...
 		/// </summary>
-		public double ShadowFormDamageCoefficient { get; set; }
+		public double ShadowFormIncomingDamageCoefficient { get; set; }
+
+
+		public double ShadowFormOutcomingDamageCoefficient { get; set; }
 
 		/// <summary>
 		/// урон внезапного удара
@@ -330,5 +333,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.Configuration
 		/// минимальное кд на способности\прыжки\ect
 		/// </summary>
 		public int GlobalCooldown { get; set; }
+
+		public double SmiteDamageCoefficient { get; set; }
 	}
 }
