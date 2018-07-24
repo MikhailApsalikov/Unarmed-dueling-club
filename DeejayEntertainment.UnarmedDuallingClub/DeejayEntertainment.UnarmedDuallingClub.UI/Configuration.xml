@@ -119,10 +119,14 @@
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>8</Id>
+			<Name>FireShock</Name>
+			<DisplayName>Огненный шок</DisplayName>
 		  <Cooldown>100</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>9</Id>
+			<Name>ShadowFreeze</Name>
+			<DisplayName>Стрела тьмы</DisplayName>
 		  <Cooldown>50</Cooldown>
 	  </AbilityConstants>
 		<AbilityConstants>
@@ -169,10 +173,14 @@
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>18</Id>
+			<Name>Fireball</Name>
+			<DisplayName>Огненный шар</DisplayName>
 		  <Cooldown>20</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>19</Id>
+			<Name>CurseLow</Name>
+			<DisplayName>Вампиризм</DisplayName>
 		  <Cooldown>20</Cooldown>
 	  </AbilityConstants>
 		<AbilityConstants>
@@ -219,13 +227,18 @@
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>28</Id>
+			<Name>Armageddon</Name>
+			<DisplayName>Армагеддон</DisplayName>
 		  <Cooldown>100</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>29</Id>
+			<Name>CurseHigh</Name>
+			<DisplayName>Проклятие</DisplayName>
 		  <Cooldown>400</Cooldown>
 	  </AbilityConstants>
   </AbilityConstantses>
+	<ArmageddonMaxDamage>750</ArmageddonMaxDamage>
   <ArmorReduction>0.04</ArmorReduction>
   <LowHandBaseDamage>25</LowHandBaseDamage>
   <HighHandBaseDamage>20</HighHandBaseDamage>
@@ -283,7 +296,7 @@
   <FrostEnrageDamageIncrease>50</FrostEnrageDamageIncrease>
   <FireShockDuration>5</FireShockDuration>
   <FireShockAdditionalDuration>6</FireShockAdditionalDuration>
-  <FileShockStackDamage>16</FileShockStackDamage>
+	<FileballStackDamage>16</FileballStackDamage>
   <FireShieldAbsorbDamage>350</FireShieldAbsorbDamage>
   <ChanceToScorchByAttack>0.2</ChanceToScorchByAttack>
   <BaseCurseLowDamage>6</BaseCurseLowDamage>

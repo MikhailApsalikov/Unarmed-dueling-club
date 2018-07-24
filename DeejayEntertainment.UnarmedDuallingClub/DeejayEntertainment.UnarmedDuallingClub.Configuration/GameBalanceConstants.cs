@@ -21,6 +21,8 @@ namespace DeejayEntertainment.UnarmedDuallingClub.Configuration
 			return AbilityConstantses.First(c => c.Name == name);
 		}
 
+		public int ArmageddonMaxDamage { get; set; }
+
 		/// <summary>
 		/// на сколько снижает физический урон 1 единица брони
 		/// </summary>
@@ -299,7 +301,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.Configuration
 		/// <summary>
 		/// урон от Огненного Шара за 1 недостающий до 10 стак Ожога
 		/// </summary>
-		public int FileShockStackDamage { get; set; }
+		public int FileballStackDamage { get; set; }
 
 		/// <summary>
 		/// количество урона, поглощаемое огненным щитом

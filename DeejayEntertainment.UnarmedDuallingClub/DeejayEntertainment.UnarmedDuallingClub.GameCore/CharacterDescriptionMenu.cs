@@ -217,12 +217,32 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 
 		private string CompileFireMageAbilities()
 		{
-			return null;
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine(Resources.AbilitiesDescription.AbilitiesTitle);
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 1, gameBalanceConstants.GetAbilityByName("FireShock").DisplayName, string.Format(Resources.AbilitiesDescription.FireShock), gameBalanceConstants.GetAbilityByName("FireShock").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 2, gameBalanceConstants.GetAbilityByName("Fireball").DisplayName, string.Format(Resources.AbilitiesDescription.Fireball, gameBalanceConstants.FileballStackDamage * 10), gameBalanceConstants.GetAbilityByName("Fireball").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 3, gameBalanceConstants.GetAbilityByName("Armageddon").DisplayName, string.Format(Resources.AbilitiesDescription.Armageddon, gameBalanceConstants.ArmageddonMaxDamage), gameBalanceConstants.GetAbilityByName("Armageddon").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.FireShield, gameBalanceConstants.FireShieldAbsorbDamage);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.FireBlood, gameBalanceConstants.ChanceToScorchByAttack * 100);
+			return sb.ToString();
 		}
 
 		private string CompileWarlockAbilities()
 		{
-			return null;
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine(Resources.AbilitiesDescription.AbilitiesTitle);
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 1, gameBalanceConstants.GetAbilityByName("ShadowFreeze").DisplayName, string.Format(Resources.AbilitiesDescription.ShadowFreeze, gameBalanceConstants.ShadowFreezeDuration / 10.0), gameBalanceConstants.GetAbilityByName("ShadowFreeze").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 2, gameBalanceConstants.GetAbilityByName("CurseLow").DisplayName, string.Format(Resources.AbilitiesDescription.CurseLow, gameBalanceConstants.BaseCurseLowDamage, gameBalanceConstants.BaseCurseLowHeal), gameBalanceConstants.GetAbilityByName("CurseLow").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 3, gameBalanceConstants.GetAbilityByName("CurseHigh").DisplayName, string.Format(Resources.AbilitiesDescription.CurseHigh, gameBalanceConstants.CurseHighDamage, gameBalanceConstants.CurseHighDuration / 10.0), gameBalanceConstants.GetAbilityByName("CurseHigh").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.BlindShadow, gameBalanceConstants.ShadowBlindDuration / 10.0);
+			return sb.ToString();
 		}
 	}
 }

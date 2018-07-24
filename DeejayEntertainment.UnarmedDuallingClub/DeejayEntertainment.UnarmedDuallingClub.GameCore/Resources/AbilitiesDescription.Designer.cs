@@ -70,6 +70,15 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Армагеддон. Призывает молнию. Наносит до {0} магического урона.
+        /// </summary>
+        internal static string Armageddon {
+            get {
+                return ResourceManager.GetString("Armageddon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Проводит бесконтактную атаку с расстояния. Оглушает на {0} сек. и наносит {1} магического урона раз в {2} сек. Длительность - {3} сек.
         /// </summary>
         internal static string Bleed {
@@ -84,6 +93,15 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Resources {
         internal static string Blind {
             get {
                 return ResourceManager.GetString("Blind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4) Ослепляющий рывок(пассивная). После удачного рывка враг теряет способность видеть. И приобретает ее лишь через {0} сек..
+        /// </summary>
+        internal static string BlindShadow {
+            get {
+                return ResourceManager.GetString("BlindShadow", resourceCulture);
             }
         }
         
@@ -111,6 +129,24 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Resources {
         internal static string Bubble {
             get {
                 return ResourceManager.GetString("Bubble", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Наносит {0} ед. магического урона раз в 1 сек. Длительность {1} сек.
+        /// </summary>
+        internal static string CurseHigh {
+            get {
+                return ResourceManager.GetString("CurseHigh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Наносит {0} ед. магического урона каждые 3 сек. и исцеляет на {1} ед. Эффект суммируется бесконечно.
+        /// </summary>
+        internal static string CurseLow {
+            get {
+                return ResourceManager.GetString("CurseLow", resourceCulture);
             }
         }
         
@@ -156,6 +192,42 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Resources {
         internal static string Enrage {
             get {
                 return ResourceManager.GetString("Enrage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Наносит до {0} магического урона.
+        /// </summary>
+        internal static string Fireball {
+            get {
+                return ResourceManager.GetString("Fireball", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5) Пылающая кровь(пассивная). Атакуя мага, враг получает с вероятностью {0}% 1 эффект Ожога..
+        /// </summary>
+        internal static string FireBlood {
+            get {
+                return ResourceManager.GetString("FireBlood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4) Огненный рывок(пассивная). После удачного рывка на мага накладывается щит, поглощающий до {0} ед. физического урона..
+        /// </summary>
+        internal static string FireShield {
+            get {
+                return ResourceManager.GetString("FireShield", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Оглушает врага. Чем больше иммунитета выработал он, тем больше время оглушения.
+        /// </summary>
+        internal static string FireShock {
+            get {
+                return ResourceManager.GetString("FireShock", resourceCulture);
             }
         }
         
@@ -246,6 +318,15 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Resources {
         internal static string ShadowForm {
             get {
                 return ResourceManager.GetString("ShadowForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Замораживает врага на {0} сек.
+        /// </summary>
+        internal static string ShadowFreeze {
+            get {
+                return ResourceManager.GetString("ShadowFreeze", resourceCulture);
             }
         }
         

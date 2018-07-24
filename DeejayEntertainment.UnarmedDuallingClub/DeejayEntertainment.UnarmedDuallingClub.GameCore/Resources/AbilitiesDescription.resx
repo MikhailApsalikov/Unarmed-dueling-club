@@ -120,11 +120,17 @@
   <data name="AbilitiesTitle" xml:space="preserve">
     <value>Способности:</value>
   </data>
+  <data name="Armageddon" xml:space="preserve">
+    <value>Армагеддон. Призывает молнию. Наносит до {0} магического урона</value>
+  </data>
   <data name="Bleed" xml:space="preserve">
     <value>Проводит бесконтактную атаку с расстояния. Оглушает на {0} сек. и наносит {1} магического урона раз в {2} сек. Длительность - {3} сек</value>
   </data>
   <data name="Blind" xml:space="preserve">
     <value>Ослепляет врага на {0} сек</value>
+  </data>
+  <data name="BlindShadow" xml:space="preserve">
+    <value>4) Ослепляющий рывок(пассивная). После удачного рывка враг теряет способность видеть. И приобретает ее лишь через {0} сек.</value>
   </data>
   <data name="BlockBan" xml:space="preserve">
     <value>4) Пробивание брони(пассивная). После рывка враг не может использовать блок в течение {0} сек.</value>
@@ -134,6 +140,12 @@
   </data>
   <data name="Bubble" xml:space="preserve">
     <value>Герой получает неуязвимость на {0} сек</value>
+  </data>
+  <data name="CurseHigh" xml:space="preserve">
+    <value>Наносит {0} ед. магического урона раз в 1 сек. Длительность {1} сек</value>
+  </data>
+  <data name="CurseLow" xml:space="preserve">
+    <value>Наносит {0} ед. магического урона каждые 3 сек. и исцеляет на {1} ед. Эффект суммируется бесконечно</value>
   </data>
   <data name="Cyclone" xml:space="preserve">
     <value>Силы природы подхватывают противника и делают его неуязвимым на {0} сек. Противник не может ничего сделать, пока действует циклон</value>
@@ -149,6 +161,18 @@
   </data>
   <data name="Enrage" xml:space="preserve">
     <value>Наполняет свои атаки яростью и наносит на {0}% больше урона. Длительность {1} сек</value>
+  </data>
+  <data name="Fireball" xml:space="preserve">
+    <value>Наносит до {0} магического урона</value>
+  </data>
+  <data name="FireBlood" xml:space="preserve">
+    <value>5) Пылающая кровь(пассивная). Атакуя мага, враг получает с вероятностью {0}% 1 эффект Ожога.</value>
+  </data>
+  <data name="FireShield" xml:space="preserve">
+    <value>4) Огненный рывок(пассивная). После удачного рывка на мага накладывается щит, поглощающий до {0} ед. физического урона.</value>
+  </data>
+  <data name="FireShock" xml:space="preserve">
+    <value>Оглушает врага. Чем больше иммунитета выработал он, тем больше время оглушения</value>
   </data>
   <data name="Freeze" xml:space="preserve">
     <value>Замораживает врага на {0} сек</value>
@@ -179,6 +203,9 @@
   </data>
   <data name="ShadowForm" xml:space="preserve">
     <value>Растворяется в тени, наносит на {0}% больше урона, получает на {1}% меньше урона и не может использовать заклинания исцеления</value>
+  </data>
+  <data name="ShadowFreeze" xml:space="preserve">
+    <value>Замораживает врага на {0} сек</value>
   </data>
   <data name="Smite" xml:space="preserve">
     <value>4) Кара(пассивная). Отражает {0}% любого нанесенного урона. Растворенные в тени противники не получают урона. Растворяет вражеского лекаря в тени.</value>
