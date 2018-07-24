@@ -107,10 +107,14 @@
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>6</Id>
+			<Name>Stone</Name>
+			<DisplayName>Метание камня</DisplayName>
 		  <Cooldown>100</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>7</Id>
+			<Name>Freeze</Name>
+			<DisplayName>Заморозка</DisplayName>
 		  <Cooldown>50</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
@@ -153,10 +157,14 @@
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>16</Id>
+			<Name>BloodLast</Name>
+			<DisplayName>Кровожадность</DisplayName>
 		  <Cooldown>400</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>17</Id>
+			<Name>FrostBolt</Name>
+			<DisplayName>Ледяная стрела</DisplayName>
 		  <Cooldown>20</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
@@ -199,10 +207,14 @@
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>26</Id>
+			<Name>EnergyBolt</Name>
+			<DisplayName>Энергетический шар</DisplayName>
 		  <Cooldown>120</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
 		  <Id>27</Id>
+			<Name>IceShield</Name>
+			<DisplayName>Ледяной щит</DisplayName>
 		  <Cooldown>120</Cooldown>
 	  </AbilityConstants>
 	  <AbilityConstants>
@@ -260,7 +272,7 @@
   <BaseStoneDamage>45</BaseStoneDamage>
   <BaseBloodlustDuration>150</BaseBloodlustDuration>
   <BaseBloodlustDamageIncrease>20</BaseBloodlustDamageIncrease>
-  <EnergyBoldDamage>71</EnergyBoldDamage>
+	<EnergyBoltDamage>71</EnergyBoltDamage>
   <BigDamageMissileModifier>3</BigDamageMissileModifier>
   <FreezeDuration>40</FreezeDuration>
   <FrostBoltDamage>87</FrostBoltDamage>

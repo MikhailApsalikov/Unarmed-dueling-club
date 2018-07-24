@@ -244,7 +244,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.Configuration
 		/// <summary>
 		/// базовый урон энергетического шара
 		/// </summary>
-		public int EnergyBoldDamage { get; set; }
+		public int EnergyBoltDamage { get; set; }
 
 		/// <summary>
 		/// увеличение урона, если обьект типа "ракета" попал в цель, удовлетворяющую определенному условию

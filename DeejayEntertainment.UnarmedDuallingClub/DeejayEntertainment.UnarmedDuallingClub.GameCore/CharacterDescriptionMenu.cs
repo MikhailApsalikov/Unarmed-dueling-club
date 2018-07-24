@@ -69,25 +69,25 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 			{
 				CharacterDescription = Resources.CharacterDescriptions.Combinator,
 				StatsDescription = CompileStats("Combinator", Resources.StatsDescriptions.Mikhail, Resources.StatsDescriptions.Agility),
-				AbilitiesDescription = null
+				AbilitiesDescription = CompileCombinatorAbilities()
 			});
 			characters.Add(new CharacterState(assetManager, "FrostMage")
 			{
 				CharacterDescription = Resources.CharacterDescriptions.FrostMage,
 				StatsDescription = CompileStats("FrostMage", Resources.StatsDescriptions.Dan, Resources.StatsDescriptions.Intellegence),
-				AbilitiesDescription = null
+				AbilitiesDescription = CompileFrostMageAbilities()
 			});
 			characters.Add(new CharacterState(assetManager, "FireMage")
 			{
 				CharacterDescription = Resources.CharacterDescriptions.FireMage,
 				StatsDescription = CompileStats("FireMage", Resources.StatsDescriptions.Dan, Resources.StatsDescriptions.Intellegence),
-				AbilitiesDescription = null
+				AbilitiesDescription = CompileFireMageAbilities()
 			});
 			characters.Add(new CharacterState(assetManager, "Warlock")
 			{
 				CharacterDescription = Resources.CharacterDescriptions.Warlock,
 				StatsDescription = CompileStats("Warlock", Resources.StatsDescriptions.Dan, Resources.StatsDescriptions.Intellegence),
-				AbilitiesDescription = null
+				AbilitiesDescription = CompileWarlockAbilities()
 			});
 		}
 
@@ -187,6 +187,42 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 			sb.AppendLine();
 			sb.AppendFormat(Resources.AbilitiesDescription.ReduceCdBurster, gameBalanceConstants.BursterCooldownReduction / 10.0);
 			return sb.ToString();
+		}
+
+		private string CompileCombinatorAbilities()
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine(Resources.AbilitiesDescription.AbilitiesTitle);
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 1, gameBalanceConstants.GetAbilityByName("Stone").DisplayName, string.Format(Resources.AbilitiesDescription.Stone, gameBalanceConstants.BaseStoneDamage, gameBalanceConstants.BaseStoneDuration / 10.0), gameBalanceConstants.GetAbilityByName("Stone").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 2, gameBalanceConstants.GetAbilityByName("BloodLast").DisplayName, string.Format(Resources.AbilitiesDescription.BloodLast, gameBalanceConstants.BaseBloodlustDamageIncrease, gameBalanceConstants.BaseBloodlustDuration / 10.0), gameBalanceConstants.GetAbilityByName("BloodLast").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 3, gameBalanceConstants.GetAbilityByName("EnergyBolt").DisplayName, string.Format(Resources.AbilitiesDescription.EnergyBolt, gameBalanceConstants.EnergyBoltDamage, gameBalanceConstants.BigDamageMissileModifier, gameBalanceConstants.BaseStormDuration / 10.0), gameBalanceConstants.GetAbilityByName("EnergyBolt").Cooldown / 10.0);
+			return sb.ToString();
+		}
+
+		private string CompileFrostMageAbilities()
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine(Resources.AbilitiesDescription.AbilitiesTitle);
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 1, gameBalanceConstants.GetAbilityByName("Freeze").DisplayName, string.Format(Resources.AbilitiesDescription.Freeze, gameBalanceConstants.FreezeDuration / 10.0), gameBalanceConstants.GetAbilityByName("Freeze").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 2, gameBalanceConstants.GetAbilityByName("FrostBolt").DisplayName, string.Format(Resources.AbilitiesDescription.FrostBolt, gameBalanceConstants.FrostBoltDamage, gameBalanceConstants.BigDamageMissileModifier), gameBalanceConstants.GetAbilityByName("FrostBolt").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.Template, 3, gameBalanceConstants.GetAbilityByName("IceShield").DisplayName, string.Format(Resources.AbilitiesDescription.IceShield, gameBalanceConstants.IceShieldAbsorbDamage, gameBalanceConstants.FreezeDuration / 10.0, gameBalanceConstants.IceShieldTime / 10.0), gameBalanceConstants.GetAbilityByName("IceShield").Cooldown / 10.0);
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AbilitiesDescription.FrostEnrage, gameBalanceConstants.FrostEnrageDamageIncrease, gameBalanceConstants.FrostEnrageDuration / 10.0);
+			return sb.ToString();
+		}
+
+		private string CompileFireMageAbilities()
+		{
+			return null;
+		}
+
+		private string CompileWarlockAbilities()
+		{
+			return null;
 		}
 	}
 }

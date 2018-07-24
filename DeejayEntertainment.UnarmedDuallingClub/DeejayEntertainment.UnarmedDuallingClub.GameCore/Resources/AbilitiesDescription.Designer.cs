@@ -97,6 +97,15 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Наполняет свои атаки яростью и наносит на {0}% больше урона. Длительность {1} сек.
+        /// </summary>
+        internal static string BloodLast {
+            get {
+                return ResourceManager.GetString("BloodLast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Герой получает неуязвимость на {0} сек.
         /// </summary>
         internal static string Bubble {
@@ -133,6 +142,15 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Запускает странный энергетический шар, который наносит противнику {0} ед. магического урона. Если у противника менее 35% здоровья, то он получит в {1} раза больше урона.
+        /// </summary>
+        internal static string EnergyBolt {
+            get {
+                return ResourceManager.GetString("EnergyBolt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Наполняет свои атаки яростью и наносит на {0}% больше урона. Длительность {1} сек.
         /// </summary>
         internal static string Enrage {
@@ -142,11 +160,47 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Замораживает врага на {0} сек.
+        /// </summary>
+        internal static string Freeze {
+            get {
+                return ResourceManager.GetString("Freeze", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Создает ледяную стрелу, наносящую {0} ед. магического урона. Замороженный противник получает в {1} раза больше урона.
+        /// </summary>
+        internal static string FrostBolt {
+            get {
+                return ResourceManager.GetString("FrostBolt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4)Ледяная ярость(пассивная). Если магу наносят урон, снижающий его здоровье до 25%, то он впадает в ярость и начинает наносить на {0}% больше урона. Длительность {1} сек. Срабатывает только 1 раз за бой..
+        /// </summary>
+        internal static string FrostEnrage {
+            get {
+                return ResourceManager.GetString("FrostEnrage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Исцеляет {0} - {1} ед. здоровья. Перезарядка сбрасывается, если противник в циклоне.
         /// </summary>
         internal static string Heal {
             get {
                 return ResourceManager.GetString("Heal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Окружает мага ледяным щитом, который поглощает {0} ед. урона. Если противник пробьет щит, он заморозится на {1} сек. Длительность щита - {2} сек.
+        /// </summary>
+        internal static string IceShield {
+            get {
+                return ResourceManager.GetString("IceShield", resourceCulture);
             }
         }
         
@@ -210,6 +264,15 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Resources {
         internal static string Stealth {
             get {
                 return ResourceManager.GetString("Stealth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Создает огромный камень из воздуха и метает его в противника, нанося ему  {0} ед. физического урона и оглушая на {1} сек.
+        /// </summary>
+        internal static string Stone {
+            get {
+                return ResourceManager.GetString("Stone", resourceCulture);
             }
         }
         
