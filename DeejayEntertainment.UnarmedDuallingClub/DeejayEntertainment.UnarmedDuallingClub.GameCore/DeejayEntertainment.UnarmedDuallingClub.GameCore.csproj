@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterDescriptionMenu.cs" />
+    <Compile Include="CharacterSelectMenu.cs" />
     <Compile Include="Entities\CharacterState.cs" />
     <Compile Include="Entities\MenuOptionEntity.cs" />
     <Compile Include="MainMenu.cs" />

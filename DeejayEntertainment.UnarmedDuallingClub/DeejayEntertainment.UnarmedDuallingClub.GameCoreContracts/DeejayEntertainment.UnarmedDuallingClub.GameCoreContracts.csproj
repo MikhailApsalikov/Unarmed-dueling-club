@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Entities\MenuOption.cs" />
     <Compile Include="ICharacterDescriptionMenu.cs" />
+    <Compile Include="ICharacterSelectMenu.cs" />
     <Compile Include="IMainMenu.cs" />
     <Compile Include="Interfaces\ICharacterState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

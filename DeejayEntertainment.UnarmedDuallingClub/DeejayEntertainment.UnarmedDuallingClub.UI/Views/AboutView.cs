@@ -15,7 +15,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 	public class AboutView : GameViewBase
 	{
 		public override View View => View.About;
-		private List<string> content = new List<string>()
+		private readonly List<string> content = new List<string>()
 		{
 			"Игра Unarmed Duelling Club",
 			"Авторы - студенты группы ИВЧТ-21:",
@@ -28,10 +28,8 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 			"05.03.2012 - 26.05.2012",
 			"(c)Deejay Entertainment. Все права защищены."
 		};
-		private MainMenuView mainMenu;
-		private int indent;
-		private int indent2;
-		private Font font;
+		private readonly MainMenuView mainMenu;
+		private readonly Font font;
 		private AssetImage background;
 		private AssetImage udcLabel;
 
@@ -40,8 +38,6 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 		{
 			this.mainMenu = mainMenu;
 			font = new Font("Arial", Height / 35);
-			indent = Height / 35;
-			indent2 = indent * 7;
 		}
 
 		public override void OnKeyPressed(Key key)

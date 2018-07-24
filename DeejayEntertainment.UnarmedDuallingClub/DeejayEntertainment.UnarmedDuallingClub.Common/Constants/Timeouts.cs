@@ -5,5 +5,6 @@
 		public const int ExitTimeOut = 1500;
 		public const int PlayerAnimationFrame = 500;
 		public const int RepaintInterval = 50;
+		public const int CharacterSelectTimeout = 2500;
 	}
 }

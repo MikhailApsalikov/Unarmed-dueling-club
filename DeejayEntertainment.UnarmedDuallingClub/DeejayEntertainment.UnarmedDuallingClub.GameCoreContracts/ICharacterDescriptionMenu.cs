@@ -1,5 +1,4 @@
 ﻿using DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts.Interfaces;
-using System.Collections.Generic;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts
 {

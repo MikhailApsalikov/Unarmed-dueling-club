@@ -68,6 +68,9 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 				case Enums.View.Character:
 					soundManager.SetBackgroundMusic(Music.AboutMenuTheme);
 					break;
+				case Enums.View.CharacterSelect:
+					soundManager.SetBackgroundMusic(Music.SelectMenuTheme);
+					break;
 			}
 		}
 

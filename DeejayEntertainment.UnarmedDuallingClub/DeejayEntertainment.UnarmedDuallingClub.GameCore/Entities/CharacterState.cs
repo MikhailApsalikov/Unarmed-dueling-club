@@ -15,9 +15,11 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Entities
 		private DateTime setTime;
 		private int animationFramesCount = 1;
 		private List<Image> frames = new List<Image>();
+		private readonly bool isInversed;
 
-		public CharacterState(AssetManager assetManager, string playerName)
+		public CharacterState(AssetManager assetManager, string playerName, bool isInversed = false)
 		{
+			this.isInversed = isInversed;
 			this.PlayerName = playerName;
 			this.assetManager = assetManager;
 			this.Pose = Pose.Main;
@@ -43,7 +45,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Entities
 
 		private List<Image> SetAnimationFrames(Pose pose)
 		{
-			return assetManager.GetPlayerAnimation(PlayerName, pose);
+			return assetManager.GetPlayerAnimation(PlayerName, pose, isInversed);
 		}
 
 		public Image Image
@@ -54,6 +56,8 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore.Entities
 				return frames[frameNumber];
 			}
 		}
+
+		public Image Icon => assetManager.GetPlayerIcon(PlayerName);
 
 		public string CharacterDescription { get; set; }
 		public string StatsDescription { get; set; }

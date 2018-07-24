@@ -71,6 +71,17 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 		{
 			switch (mainMenu.Select())
 			{
+				case 0:
+					MainController.CurrentView = new CharacterSelectView(
+						MainController,
+						image,
+						assetManager,
+						this,
+						new CharacterSelectMenu(assetManager, soundManager),
+						new CharacterSelectMenu(assetManager, soundManager, true),
+						soundManager
+					);
+					break;
 				case 2:
 					MainController.CurrentView = new CharacterView(
 						MainController,
@@ -79,7 +90,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 						this,
 						new CharacterDescriptionMenu(assetManager, soundManager),
 						soundManager
-						);
+					);
 					break;
 				case 3:
 					MainController.CurrentView = new AboutView(

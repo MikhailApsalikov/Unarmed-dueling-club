@@ -13,13 +13,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 {
 	public class CharacterDescriptionMenu : ICharacterDescriptionMenu
 	{
-		public ICharacterState CurrentCharacter
-		{
-			get
-			{
-				return characters[Selection];
-			}
-		}
+		public ICharacterState CurrentCharacter => characters[Selection];
 
 		private List<ICharacterState> characters;
 		private int Selection { get; set; }

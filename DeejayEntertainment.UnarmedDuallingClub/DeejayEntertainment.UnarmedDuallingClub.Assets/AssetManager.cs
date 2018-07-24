@@ -234,6 +234,11 @@ namespace DeejayEntertainment.UnarmedDuallingClub.Assets
 			}
 		}
 
+		public Image GetPlayerIcon(string characterName)
+		{
+			return GetImageByPath(CalculateAnimationPath(characterName, PlayerAssets.Icon));
+		}
+
 		private string CalculateAnimationPath(string characterName, string fileName)
 		{
 			return charactersFolderPath + characterName + fileName;
