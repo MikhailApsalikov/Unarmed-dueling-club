@@ -24,7 +24,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.GameCore
 		private List<ICharacterState> characters;
 		private int Selection { get; set; }
 		private SoundManager soundManager;
-		private GameBalanceConstants gameBalanceConstants = GameBalanceConfigurationManager.Configuration;
+		private GameBalanceConstants gameBalanceConstants = ConfigurationManager.GameBalanceConfiguration;
 
 		public CharacterDescriptionMenu(AssetManager assetManager, SoundManager soundManager)
 		{

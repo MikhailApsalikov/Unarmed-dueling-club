@@ -17,7 +17,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.Combat.Effects
 
 		protected override void OnTick()
 		{
-			Character.DealMagicalDamage(GameBalanceConfigurationManager.Configuration.BaseBleedDamage);
+			Character.DealMagicalDamage(ConfigurationManager.GameBalanceConfiguration.BaseBleedDamage);
 		}
 	}
 }

@@ -35,8 +35,8 @@ namespace DeejayEntertainment.UnarmedDuallingClub.Combat.Abstract
 		{
 			get
 			{
-				return 1.0 - (Armor * GameBalanceConfigurationManager.Configuration.ArmorReduction 
-					/ (1 + Armor * GameBalanceConfigurationManager.Configuration.ArmorReduction));
+				return 1.0 - (Armor * ConfigurationManager.GameBalanceConfiguration.ArmorReduction 
+					/ (1 + Armor * ConfigurationManager.GameBalanceConfiguration.ArmorReduction));
 			}
 		}
 

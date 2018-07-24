@@ -39,11 +39,13 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbilityConstants.cs" />
     <Compile Include="CharacterConstants.cs" />
-    <Compile Include="GameBalanceConfigurationManager.cs" />
+    <Compile Include="ControllerConfiguration.cs" />
+    <Compile Include="ConfigurationManager.cs" />
     <Compile Include="GameBalanceConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

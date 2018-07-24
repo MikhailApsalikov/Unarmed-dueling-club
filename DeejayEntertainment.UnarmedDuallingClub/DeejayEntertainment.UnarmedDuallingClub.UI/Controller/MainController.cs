@@ -45,7 +45,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 			Width = (int)window.ActualWidth;
 			Height = (int)window.ActualHeight;
 			assetManager = new AssetManager(Environment.CurrentDirectory);
-			soundManager = new SoundManager(Path.Combine(Environment.CurrentDirectory, "Resources/sounds"), Path.Combine(Environment.CurrentDirectory, "Resources/music"));
+			soundManager = new SoundManager(Path.Combine(Environment.CurrentDirectory, "Resources\\sounds"), Path.Combine(Environment.CurrentDirectory, "Resources/music"));
 			CurrentView = new MainMenuView(this, image, assetManager, soundManager, new MainMenu(soundManager));
 			Repaint();
 		}

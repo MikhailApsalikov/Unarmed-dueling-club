@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<ControllerConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Up>Up</Up>
+  <Down>Down</Down>
+  <Left>Left</Left>
+  <Right>Right</Right>
+  <A>NumPad4</A>
+  <C>NumPad6</C>
+  <X>NumPad7</X>
+  <Z>NumPad9</Z>
+  <Block>NumPad0</Block>
+  <Charge>NumPad5</Charge>
+  <Ability1>NumPad1</Ability1>
+  <Ability2>NumPad2</Ability2>
+  <Ability3>NumPad3</Ability3>
+</ControllerConfiguration>
