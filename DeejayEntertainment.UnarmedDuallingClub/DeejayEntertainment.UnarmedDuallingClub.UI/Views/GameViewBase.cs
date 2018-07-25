@@ -107,5 +107,25 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 		{
 			graphics.DrawImage(asset, new Rectangle(x, y, width, height));
 		}
+
+		protected static int RealXToGameX(int x, int width)
+		{
+			return x - width / 2;
+		}
+
+		protected static int GameXToRealX(int x, int width)
+		{
+			return x + width / 2;
+		}
+
+		protected static int RealYToGameY(int y, int height)
+		{
+			return y - height / 2;
+		}
+
+		protected static int GameYToRealY(int y, int height)
+		{
+			return y + height / 2;
+		}
 	}
 }

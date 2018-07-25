@@ -117,7 +117,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 			Task.Delay(Timeouts.CharacterSelectTimeout).ContinueWith((result) =>
 			{
 				soundManager.PlaySound(Sounds.CharacterSelected);
-				MainController.CurrentView = mainMenu;
+				MainController.CurrentView = new PreFightView(MainController, image, assetManager, soundManager);
 			});
 		}
 

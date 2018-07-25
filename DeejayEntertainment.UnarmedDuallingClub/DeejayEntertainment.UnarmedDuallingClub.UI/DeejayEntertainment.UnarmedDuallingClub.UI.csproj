@@ -63,6 +63,7 @@
     <Compile Include="Views\CharacterView.cs" />
     <Compile Include="Views\MainMenuView.cs" />
     <Compile Include="Views\GameViewBase.cs" />
+    <Compile Include="Views\PreFightView.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
