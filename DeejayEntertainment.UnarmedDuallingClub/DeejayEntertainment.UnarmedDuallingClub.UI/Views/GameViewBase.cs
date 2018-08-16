@@ -10,9 +10,10 @@ using System.Windows.Media.Imaging;
 using DeejayEntertainment.UnarmedDuallingClub.Assets;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Enums;
 using System.Drawing.Imaging;
-using ImageControl = System.Windows.Controls.Image;
 using AssetImage = System.Drawing.Image;
 using DeejayEntertainment.UnarmedDuallingClub.Sound;
+using System.Diagnostics;
+using System.Windows.Controls;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 {
@@ -23,14 +24,14 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 		public static extern bool DeleteObject([In] IntPtr hObject);
 
 		protected readonly MainController MainController;
-		protected readonly ImageControl image;
+		protected readonly Canvas image;
 		protected readonly AssetManager assetManager;
 		protected readonly SoundManager soundManager;
 		protected int Width;
 		protected int Height;
 		protected static object lockObj = new object();
 
-		protected GameViewBase(MainController mainController, ImageControl image, AssetManager assetManager, SoundManager soundManager)
+		protected GameViewBase(MainController mainController, Canvas image, AssetManager assetManager, SoundManager soundManager)
 		{
 			this.MainController = mainController;
 			this.image = image;
@@ -57,25 +58,26 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 			{
 				return;
 			}
-			Bitmap bitmap = new Bitmap(MainController.Width, MainController.Height);
-			Graphics graphics = Graphics.FromImage(bitmap);
+			Stopwatch sw = Stopwatch.StartNew();
 
 			lock (lockObj)
 			{
-				PaintContent(graphics);
-			}
-
-			image.Dispatcher.Invoke(() =>
-			{
-				if (this.MainController.CurrentView != this)
+				image.Dispatcher.Invoke(() =>
 				{
-					return;
-				}
-				image.Source = ImageSourceForBitmap(bitmap);
-			});
+					if (this.MainController.CurrentView != this)
+					{
+						return;
+					}
+					PaintContent(this.image);
+					sw.Stop();
+					Trace.WriteLine(sw.ElapsedMilliseconds);
+				});
+			}
 		}
 
 		protected abstract void PaintContent(Graphics graphics);
+
+		protected abstract void PaintContent(Canvas canvas);
 
 		public ImageSource ImageSourceForBitmap(Bitmap bmp)
 		{

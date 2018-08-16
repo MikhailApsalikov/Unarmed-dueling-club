@@ -20,7 +20,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI
 		protected override void OnContentRendered(EventArgs e)
 		{
 			base.OnContentRendered(e);
-			MainController = new MainController(Display, this);
+			MainController = new MainController(Canvas, this);
 		}
 
 		protected override void OnKeyDown(KeyEventArgs e)

@@ -16,8 +16,8 @@ using DeejayEntertainment.UnarmedDuallingClub.Sound;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Constants;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Controller;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Enums;
-using Image = System.Windows.Controls.Image;
 using AssetImage = System.Drawing.Image;
+using System.Windows.Controls;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 {
@@ -40,7 +40,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 		private CancellationTokenSource tokenSource;
 		private bool isLocked = false;
 
-		public CharacterSelectView(MainController mainController, Image image, AssetManager assetManager, MainMenuView mainMenu, ICharacterSelectMenu selectMenuPlayer1, ICharacterSelectMenu selectMenuPlayer2, SoundManager soundManager) : base(mainController, image, assetManager, soundManager)
+		public CharacterSelectView(MainController mainController, Canvas image, AssetManager assetManager, MainMenuView mainMenu, ICharacterSelectMenu selectMenuPlayer1, ICharacterSelectMenu selectMenuPlayer2, SoundManager soundManager) : base(mainController, image, assetManager, soundManager)
 		{
 			this.mainMenu = mainMenu;
 			this.selectMenuPlayer1 = selectMenuPlayer1;

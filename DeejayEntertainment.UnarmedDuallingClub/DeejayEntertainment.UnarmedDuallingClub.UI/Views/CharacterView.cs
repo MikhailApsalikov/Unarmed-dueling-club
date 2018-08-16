@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using DeejayEntertainment.UnarmedDuallingClub.Assets;
 using DeejayEntertainment.UnarmedDuallingClub.Common.Constants;
@@ -10,7 +11,6 @@ using DeejayEntertainment.UnarmedDuallingClub.Sound;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Constants;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Controller;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Enums;
-using ImageControl = System.Windows.Controls.Image;
 using AssetImage = System.Drawing.Image;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
@@ -31,7 +31,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 		private Task repaintTask;
 		private CancellationTokenSource tokenSource;
 
-		public CharacterView(MainController controller, ImageControl image, AssetManager assetManager, MainMenuView mainMenu,
+		public CharacterView(MainController controller, Canvas image, AssetManager assetManager, MainMenuView mainMenu,
 			ICharacterDescriptionMenu descriptionMenu, SoundManager soundManager)
 			: base(controller, image, assetManager, soundManager)
 		{

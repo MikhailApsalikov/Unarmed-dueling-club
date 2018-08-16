@@ -3,13 +3,13 @@ using System.Windows.Input;
 using DeejayEntertainment.UnarmedDuallingClub.Assets;
 using DeejayEntertainment.UnarmedDuallingClub.GameCoreContracts;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Controller;
-using ImageControl = System.Windows.Controls.Image;
 using AssetImage = System.Drawing.Image;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Enums;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Constants;
 using DeejayEntertainment.UnarmedDuallingClub.Common.Constants;
 using DeejayEntertainment.UnarmedDuallingClub.Sound;
 using DeejayEntertainment.UnarmedDuallingClub.GameCore;
+using System.Windows.Controls;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 {
@@ -25,7 +25,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 
 		public override View View => View.MainMenu;
 
-		public MainMenuView(MainController controller, ImageControl image, AssetManager assetManager, SoundManager soundManager, IMainMenu mainMenu)
+		public MainMenuView(MainController controller, Canvas image, AssetManager assetManager, SoundManager soundManager, IMainMenu mainMenu)
 			: base(controller, image, assetManager, soundManager)
 		{
 			this.mainMenu = mainMenu;

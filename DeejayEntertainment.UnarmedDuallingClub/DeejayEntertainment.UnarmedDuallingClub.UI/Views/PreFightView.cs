@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using DeejayEntertainment.UnarmedDuallingClub.Assets;
 using DeejayEntertainment.UnarmedDuallingClub.Common.Constants;
@@ -9,7 +10,6 @@ using DeejayEntertainment.UnarmedDuallingClub.Sound;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Controller;
 using DeejayEntertainment.UnarmedDuallingClub.UI.Enums;
 using AssetImage = System.Drawing.Image;
-using Image = System.Windows.Controls.Image;
 
 namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 {
@@ -22,7 +22,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Views
 		private CancellationTokenSource tokenSource;
 		private double scale;
 
-		public PreFightView(MainController mainController, Image image, AssetManager assetManager, SoundManager soundManager)
+		public PreFightView(MainController mainController, Canvas image, AssetManager assetManager, SoundManager soundManager)
 			:base (mainController, image, assetManager, soundManager)
 		{
 			scale = 1;

@@ -14,7 +14,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 {
 	public class MainController
 	{
-		private readonly Image image;
+		private readonly Canvas image;
 		private readonly AssetManager assetManager;
 		private readonly SoundManager soundManager;
 		private Window window;
@@ -38,7 +38,7 @@ namespace DeejayEntertainment.UnarmedDuallingClub.UI.Controller
 		public int Width { get; }
 		public int Height { get; }
 
-		public MainController(Image image, Window window)
+		public MainController(Canvas image, Window window)
 		{
 			this.image = image;
 			this.window = window;
